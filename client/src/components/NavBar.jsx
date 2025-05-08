@@ -1,18 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = () => {
+
+const NavBar = () => {
   return (
     <nav className="navbar">
       <h1>🪴 Dead Plant Society</h1>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/create">New Post</a></li>
-        <li><a href="/leaderboard">Leaderboard</a></li>
-        <li><a href="/login">Login</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/create">New Post</Link></li>
+        <li><Link to="/leaderboard">Leaderboard</Link></li>
+        <li><Link to="/login">Login</Link></li>
       </ul>
     </nav>
   );
 };
 
-export default Navbar;
+export default NavBar;
