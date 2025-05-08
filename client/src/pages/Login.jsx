@@ -1,6 +1,7 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom";
 
-export const Login = ({onFormSwitch}) => {
+export const Login = () => {
     const [email, setEmail] = useState('');
     const[pass, setPassword] = useState('');
 
@@ -10,6 +11,7 @@ export const Login = ({onFormSwitch}) => {
     }
     return (
     <div className="auth-form-container">
+      <form onSubmit={handleSubmit}></form>
        <form>
         <h1>WELCOME TO DEAD PLANT SOCIETY</h1>
         <br />
@@ -25,12 +27,10 @@ export const Login = ({onFormSwitch}) => {
           <input type="password" placeholder="password" id="password" name = "email" />
           <br />
           <br />
-          <button>Log In</button>
+          <button type="submit">Log In</button>
         <p>
            Don't have an account? 
-           <button type="button" onClick={() => onFormSwitch('register')} style={{ border: 'none', background: 'none', color: 'blue', cursor: 'pointer' }}>
-          Register here
-        </button>
+           <Link to="/register">Register here</Link>
       </p>
        </form>
       
