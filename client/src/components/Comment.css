@@ -1,0 +1,29 @@
+.post-card{
+    flex: 0 0 auto;
+    width: 300px;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    background-color: #db0fd5;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.Comment {
+  width: 800px;
+  padding: 1 rem;
+  border-radius: 0px;
+  height: auto;
+}
+
+.img-box {
+    border: 2px solid #555;
+    padding: 4px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .img-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  

@@ -1,6 +1,6 @@
 import React from 'react';
 import PostCard from '../components/PostCard';
-
+import Comment from '../components/Comment'; 
 const dummyPosts = [
   {
     name: "Basil",
@@ -22,6 +22,13 @@ const dummyPosts = [
   }
 ];
 
+const redditPost = {
+  name: "Eric Ou",
+  causeOfDeath: "ABGs",
+  epitaph: "Couldn't Seaside no more.",
+  imageUrl: "https://via.placeholder.com/300x200?text=Fern+Gone"
+}
+
 const HomePage = () => {
   return (
     <div className="home">
@@ -30,6 +37,7 @@ const HomePage = () => {
         {dummyPosts.map((post, idx) => (
           <PostCard key={idx} post={post} />
         ))}
+        
       </div>
     </div>
   );
