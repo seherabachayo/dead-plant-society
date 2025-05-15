@@ -6,6 +6,7 @@ import { Register } from "./pages/Register";
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import ExpandPost from './pages/ExpandedPost'
+import LogForm from './components/LogForm';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,11 +17,11 @@ function App() {
      <div className="App">
         <Routes>
          <Route path="/" element={<HomePage />} />
-         <Route path="/create" element={<div>Create Page</div>} />
          <Route path="/leaderboard" element={<div>Leaderboard Page</div>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/expandedpost" element={<ExpandPost/>}/>
+          <Route path="/logform" element={<LogForm />} />
         </Routes>
       </div>
     </Router>
