@@ -10,12 +10,17 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
- app.use(express.json());//allows server to accept json data in req body
-
-app.use("/api/users", userRoutes);//calls methods in user.route.js
-
- //start server
-app.listen(PORT, () => {
-	connectDB();
-	console.log("Server started at http://localhost:" + PORT);
+// Route for the root path
+app.get("/", (req, res) => {
+    res.send("Welcome to the server!"); // Or any other response you want
+  });
+  
+// Server get request for /users
+app.get("/users", (req, res) => {
+    res.json({ message: "List of users will go here" }); // Example response
+  });
+  
+app.listen(5000, () =>{ 
+    connectDB(); // connect database before starting server
+    console.log('Server is at http://localhost:5000/');
 });
