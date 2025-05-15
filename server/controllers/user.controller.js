@@ -51,7 +51,11 @@ export const createUser = async (req, res) => {
  
 export const deleteUser = async (req, res)=> {
     const{id} = req.params;
-    console.log("id:", id);
+
+    
+    if (!mongoose.Types.ObjectId.isValid(id)){
+         return res.status(404).json({success: false, message: "user not found"});
+     }
 
     try{
         await User.findByIdAndDelete(id);
@@ -59,6 +63,6 @@ export const deleteUser = async (req, res)=> {
     }
     catch(error) {
         console.log("error deleting user:", error.message);
-        res.status(404).json({sucess: false, message: "User not found"})
+        res.status(500).json({sucess: false, message: "Server error"})
     }
  };
