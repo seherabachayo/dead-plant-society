@@ -6,13 +6,16 @@ import mongoose from 'mongoose';
 import userRoutes from "./routes/user.route.js";
 
 dotenv.config();
+
 const app = express();
+const PORT = process.env.PORT || 5000;
+
  app.use(express.json());//allows server to accept json data in req body
 
 app.use("/api/users", userRoutes);//calls methods in user.route.js
 
  //start server
-app.listen(5000, () => {
+app.listen(PORT, () => {
 	connectDB();
-	console.log("Server started at http://localhost:5000");
+	console.log("Server started at http://localhost:" + PORT);
 });

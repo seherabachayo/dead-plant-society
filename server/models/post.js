@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-// models/Post.js
+// models/post.js
 const postSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -18,5 +18,5 @@ const postSchema = new mongoose.Schema({
   timestamps: true, // adds createdAt and updatedAt fields
 });
 
-const Post = mongoose.model('Post', postSchema); //create a collection called User using this schema
+const Post = mongoose.model('Post', postSchema); //create a collection called Post using this schema
 export default Post;
