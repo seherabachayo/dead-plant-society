@@ -20,8 +20,7 @@ function App() {
          <Route path="/leaderboard" element={<div>Leaderboard Page</div>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/expandedpost" element={<ExpandPost/>}/>
-          <Route path="/logform" element={<LogForm />} />
+          <Route path="/expanded-post" element={<ExpandPost/>}/>
         </Routes>
       </div>
     </Router>
