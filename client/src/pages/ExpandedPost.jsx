@@ -1,7 +1,31 @@
 import React from 'react';
-
-export default function test(){
+import Comment from '../components/Comment.jsx';
+import './ExpandedPost.css';
+import pic from "/Users/kaibacker/Downloads/4CA0ABB7-D410-4993-BF59-DCE2187E739E.jpg"
+import post_pic from "/Users/kaibacker/Downloads/IMG_0440.jpg"
+import Post from '../components/Post.jsx'
+export default function ExpandPost({post}){
     return(
-        <div> <Comment></Comment> </div>
+        <div>
+            <div>
+            <Post post={fake_post}></Post>
+            </div>
+            <div className="commenter">Comments?</div>
+            <div>
+            <Comment values={fake_Comment} />
+            </div>
+        </div>
     )
+}
+
+const fake_Comment = {
+    name: "Jed",
+    text: "I just got here",
+    profile_pic: pic
+}
+
+const fake_post={
+    title:"Insert Post title",
+    description: "This is the description",
+    image: post_pic
 }

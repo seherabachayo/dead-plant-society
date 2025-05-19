@@ -1,21 +1,28 @@
 import React,{useState} from 'react';
 import './Comment.css'; 
-const Comment = (values)=>{
-    var [likes,incrementLikes]=useState(0);
-    return (
-            <div className="Comment">
-                <h1>{values.profile_pic} {value.name}</h1>
-                <h2>{values.text}</h2>
+const Comment = ({values})=>{
+    let [likes,incrementLikes]=useState(0);
+
+    const add_like = ()=>{
+        incrementLikes(likes+1);
+    }
+
+    return (//put profile pic in here later. Also probably going to need another state for the replies
+            <div>
+                <h1 className="username">
+                    <img className="profile_pic" src={values.profile_pic}/>
+
+                    {values.name}
+                </h1> 
+                <h2 className="comment_text">{values.text}</h2>
                 <h3>
-                    <div>
-                    <Button onClick={()=>{Likes++;}}>Likes: {likes};</Button>
-                    </div>
-                    <div>
-                    <Button>Reply?</Button>
-                    <Button>View Replies</Button>  // Probably need another state for this
+                    <div className="comment_text">
+                    <button onClick={()=>{add_like()}}>Likes: {likes}</button>
+                    <button>Reply?</button>
+                    <button>View Replies</button>  
                     </div>
                 </h3>
-
+                
             </div>
     );
 };
