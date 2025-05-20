@@ -5,7 +5,7 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
-import ExpandPost from './pages/ExpandedPost'
+import ExpandedPost from './pages/ExpandedPost'
 import LogForm from './components/LogForm';
 
 function App() {
@@ -20,7 +20,8 @@ function App() {
          <Route path="/leaderboard" element={<div>Leaderboard Page</div>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/expanded-post" element={<ExpandPost/>}/>
+          <Route path="/expandedpost" element={<ExpandedPost/>}/>
+          <Route path="/LogForm" element={<LogForm/>}/>
         </Routes>
       </div>
     </Router>
