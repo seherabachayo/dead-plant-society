@@ -8,7 +8,7 @@ import HomePage from './pages/HomePage';
 import ExpandedPost from './pages/ExpandedPost'
 import LogForm from './components/LogForm';
 
-import CreateUser from './pages/Register';
+//import CreateUser from './pages/Register';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,7 +17,7 @@ function App() {
     <Router>
       <NavBar /> 
       
-      <CreateUser />
+      {/*<CreateUser />*/}
 
      <div className="App">
         <Routes>

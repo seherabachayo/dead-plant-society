@@ -1,15 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
+import SearchBar from './SearchBar';
+
+
 
 const NavBar = () => {
   return (
     <nav className="navbar">
       {/* Header/title link (not inside <ul>) */}
       <div className="navbar-title">
-        <Link to="/"><h1>🪴 Dead Plant Society</h1></Link>
+        <Link to="/"><h2>🪴 Dead Plant Society</h2></Link>
       </div>
-
+       <div className="navbar-search"> 
+          <SearchBar />
+       </div>
+       <link rel="stylesheet" href="./NavBar.css"></link>
+    
       <ul className="navbar-links">
         {/* <li><Link to="/">Home</Link></li> */}
         {/* Will fix later, want to show  Create a Post upon hovering but built in react button not allowing this  */}

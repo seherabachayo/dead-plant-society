@@ -4,7 +4,7 @@
     padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 0px;
-    background-color: #db0fd5;
+    background-color: #1a3316;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -22,7 +22,9 @@
 }
 .comment_text {
   display: flex;
+  color: black; 
   text-align: left;
+
   gap: 20px;
   font-size: 20px;
 }
