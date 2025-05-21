@@ -1,25 +1,73 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #2f3e46;
-    color: #fff;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  height: 64px;
+  background-color: #5a5a5a;
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+
+  z-index: 9999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.navbar ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar a,
+.dropbtn {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.navbar a:hover,
+.dropbtn:hover {
+  text-decoration: underline;
+}
+
+
+/* Dropdown css */
+.dropdown {
+  position: relative;
+}
+
+
+.dropdown-content {
   
-  .navbar ul {
-    display: flex;
-    gap: 1rem;
-    list-style: none;
-  }
-  
-  .navbar a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .navbar a:hover {
-    text-decoration: underline;
-  }
-  
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  background-color: #0f0e0e;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ovverides previous global display to make sure dropdown only shows with hover   */
+.dropdown .dropdown-content {
+  display: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
