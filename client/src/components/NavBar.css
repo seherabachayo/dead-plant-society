@@ -8,6 +8,7 @@
   height: 64px;
   background-color: #5a5a5a;
   color: white;
+  overflow-x: auto; 
 
   display: flex;
   justify-content: space-between;
@@ -26,6 +27,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  white-space:nowrap;
 }
 
 .navbar a,
@@ -70,4 +72,11 @@
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+/*Search */
+
+.navbar-search{
+  flex-shrink:1; 
+  margin-left: 1rem; 
 }
