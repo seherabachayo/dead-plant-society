@@ -15,7 +15,7 @@ export const Register = () => {
      <h1>Create Your Account </h1>
     <label htmlFor="name">Full Name</label>
     <br />
-    <input value={name} name="name" placeholder="John Doe" id="email" />
+    <input value={name} onChange={(e)=>setName(e.target.value)} name="name" placeholder="John Doe" id="email" />
     <br />
     <br />
     <label htmlFor="email">Email</label>
