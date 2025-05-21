@@ -8,12 +8,17 @@ import HomePage from './pages/HomePage';
 import ExpandedPost from './pages/ExpandedPost'
 import LogForm from './components/LogForm';
 
+import CreateUser from './pages/Register';
+
 function App() {
   const [count, setCount] = useState(0)
-  
+
   return (
     <Router>
       <NavBar /> 
+      
+      <CreateUser />
+
      <div className="App">
         <Routes>
          <Route path="/" element={<HomePage />} />
@@ -25,6 +30,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    
   );
 }
 export default App
