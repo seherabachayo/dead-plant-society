@@ -1,17 +1,15 @@
-import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
-//import './ExpandPost'
+import React, { useState } from 'react';
 import './PostCard.css';
-//import ExpandPost from './ExpandPost';
 
 const PostCard = ({ post }) => {
-  const [expandP,doExpand]=useState(false);
+  const [expandP, doExpand] = useState(false);
 
-  // function handleClick({mpost}) {
-  //   doExpand(true);
-  // }
+  function handleClick() {
+    doExpand(true);
+    // you can use expandP to show more content later
+  }
+
   return (
-    <button>
     <div className="post-card">
       <div className="img-box">
         <img src={post.imageUrl} alt={post.name} />
@@ -19,12 +17,9 @@ const PostCard = ({ post }) => {
       <h3>{post.name}</h3>
       <p><strong>Cause:</strong> {post.causeOfDeath}</p>
       <p><em>“{post.epitaph}”</em></p>
-      <button onClick={()=>handleClick({post})}>Comments</button>
+      <button onClick={handleClick}>Comments</button>
     </div>
-    </button>
   );
-  
 };
-
 
 export default PostCard;
