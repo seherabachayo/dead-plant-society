@@ -1,10 +1,26 @@
+.scroll-container {
+  display:flex; 
+  gap:1.5rem; 
+  /*justify-content: center; */
+  padding: 1rem;
+  flex-direction: row;
+  flex-wrap:wrap; 
+  justify-content: center;
+  align-items: flex-start; 
+}
+
+.home-layout{
+  display:flex; 
+
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(0, 0, 0, 0.87); 
   background-color: #bbddd2;
 
   font-synthesis: none;
@@ -52,6 +68,25 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.leaderboard{
+  width: 250px;         
+  padding: 1rem;
+  background-color: #e0d9d9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /*align-items:right;*/
+  box-sizing:border-box; 
+}
+
+.leaderboard-list{
+  list-style: none;       
+  padding: 0;            
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 @media (prefers-color-scheme: light) {
