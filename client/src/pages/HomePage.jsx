@@ -31,15 +31,29 @@ const redditPost = {
 
 const HomePage = () => {
   return (
-    <div className="home">
-      <h2>Recent Tributes</h2>
-      <div className="scroll-container">
-        {dummyPosts.map((post, idx) => (
-          <PostCard key={idx} post={post} />
-        ))}
-        
+    <div className="home-layout">
+      <div className="home">
+        <h2>Recent Tributes</h2>
+        <div className="scroll-container">
+          {dummyPosts.map((post, idx) => (
+            <PostCard key={idx} post={post} />
+          ))}
+        </div>
       </div>
-    </div>
+
+{/* dummy leaderboard on home page, not sure if I should create a seperate page for it, wait for backend */}
+      <div className="leaderboard">
+        <h2>Leaderboard</h2>
+        <br />
+        <h3>Top Plant Deaths</h3>
+        <ul className="leaderboard-list">
+          <li>1.  Basil</li>
+          <li>2. Cactus</li>
+          <li>3. Succulent</li>
+          <li>4. Aloe Vera</li>
+        </ul>
+      </div>
+    </div> 
   );
 };
 

@@ -5,26 +5,32 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
-import ExpandPost from './pages/ExpandedPost'
+import ExpandedPost from './pages/ExpandedPost'
 import LogForm from './components/LogForm';
 import post_pic from "/Users/kaibacker/Downloads/IMG_0440.jpg"
 
+//import CreateUser from './pages/Register';
+
 export default function App() {
   const [count, setCount] = useState(0)
-  
+
   return (
     <Router>
       <NavBar /> 
+      
+      {/*<CreateUser />*/}
+
      <div className="App">
         <Routes>
          <Route path="/" element={<HomePage />} />
          <Route path="/leaderboard" element={<div>Leaderboard Page</div>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/expanded-post" element={<ExpandPost post={fake_post}/>}/>
+          <Route path="/expanded-post" element={<ExpandPost/>}/>
         </Routes>
       </div>
     </Router>
+    
   );
 }
 const fake_post={
