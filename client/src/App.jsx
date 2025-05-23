@@ -7,10 +7,11 @@ import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import ExpandedPost from './pages/ExpandedPost'
 import LogForm from './components/LogForm';
+import post_pic from "/Users/kaibacker/Downloads/IMG_0440.jpg"
 
 //import CreateUser from './pages/Register';
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0)
 
   return (
@@ -25,12 +26,17 @@ function App() {
          <Route path="/leaderboard" element={<div>Leaderboard Page</div>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/expandedpost" element={<ExpandedPost/>}/>
-          <Route path="/LogForm" element={<LogForm/>}/>
+          <Route path="/expanded-post" element={<ExpandPost/>}/>
         </Routes>
       </div>
     </Router>
     
   );
 }
-export default App
+const fake_post={
+    title:"Insert Post title",
+    description: "This is the description",
+    image: post_pic
+}
+
+// export default App
