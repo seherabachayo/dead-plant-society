@@ -1,8 +1,8 @@
 import React from 'react';
 import Comment from '../components/Comment.jsx';
 import './ExpandedPost.css';
-import pic from "/Users/kaibacker/Downloads/4CA0ABB7-D410-4993-BF59-DCE2187E739E.jpg"
-import post_pic from "/Users/kaibacker/Downloads/IMG_0440.jpg"
+//import pic from "/Users/kaibacker/Downloads/4CA0ABB7-D410-4993-BF59-DCE2187E739E.jpg"
+//import post_pic from "/Users/kaibacker/Downloads/IMG_0440.jpg"
 import Post from '../components/Post.jsx'
 
 
@@ -23,11 +23,12 @@ export default function ExpandPost({post}){
 const fake_Comment = {
     name: "Jed",
     text: "I just got here",
-    profile_pic: pic
-}
-
+    profile_pic: "https://veryplants.com/cdn/shop/articles/Exotic-succulent-plants.jpg?v=1706711966"
+  };
+  
+  
 const fake_post={
     title:"Insert Post title",
     description: "This is the description",
-    image: post_pic
+    image: "https://veryplants.com/cdn/shop/articles/Exotic-succulent-plants.jpg?v=1706711966"
 }
