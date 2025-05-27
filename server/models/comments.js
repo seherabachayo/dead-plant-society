@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 //comment schema
 
-const userSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema({
     poster:{
         type: String,
         required: true
@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     },
    
 
-    timestamps : true
+    
 });
 
 const Comment = mongoose.model('Comment', commentSchema); 
