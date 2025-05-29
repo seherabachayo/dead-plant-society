@@ -24,7 +24,7 @@ const NavBar = () => {
              <Link to="/create"><button>+ Create</button></Link>
              </span>
         </li>
-        <li><Link to="/expandedpost">Expanded Post</Link></li>
+        <li><Link to="/expanded-post">Expanded Post</Link></li>
         <li><Link to="/logform">Log Form</Link></li>
         <li className="dropdown">
           <Link to="#" className="dropbtn">Profile ▾</Link>
