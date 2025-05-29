@@ -37,6 +37,8 @@ export const Register = () => {
     <div className="auth-form-container">
      <h1>Create Your Account </h1>
     <label htmlFor="username">Full Name</label>
+    <br />
+    
     <input
           id="username"
           name="username"
@@ -44,8 +46,7 @@ export const Register = () => {
           value={username}
           onChange={e => setName(e.target.value)}
         />
-    <br />
-    <br />
+    <br/><br/>
     <label htmlFor="email">Email</label><br/>
         <input
           id="email"
