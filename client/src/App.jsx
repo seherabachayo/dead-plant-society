@@ -9,7 +9,7 @@ import ExpandedPost from './pages/ExpandedPost'
 import LogForm from './components/LogForm';
 //import post_pic from "/Users/kaibacker/Downloads/IMG_0440.jpg"
 
-//import CreateUser from './pages/Register';
+import CreateUser from './pages/Register';
 
 export default function App() {
   const [count, setCount] = useState(0)
@@ -18,7 +18,7 @@ export default function App() {
     <Router>
       <NavBar /> 
       
-      {/*<CreateUser />*/}
+      <CreateUser />
 
      <div className="App">
         <Routes>
@@ -26,7 +26,7 @@ export default function App() {
          <Route path="/leaderboard" element={<div>Leaderboard Page</div>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/expanded-post" element={<ExpandPost/>}/>
+          <Route path="/expanded-post" element={<ExpandedPost/>}/>
         </Routes>
       </div>
     </Router>
@@ -36,7 +36,7 @@ export default function App() {
 const fake_post={
     title:"Insert Post title",
     description: "This is the description",
-    image: post_pic
+    //image: post_pic
 }
 
 // export default App

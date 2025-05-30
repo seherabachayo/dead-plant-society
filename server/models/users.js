@@ -10,6 +10,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    email:
+    {
+        type: String,
+        required: true
+    }
    
 
     //timestamps : true to keep track of when doc was created

@@ -11,7 +11,7 @@ const CreateUser = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            "username": 'Jert',
+            "username": 'Seher',
             "password": 'j123',
           }),
         });
