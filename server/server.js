@@ -7,13 +7,15 @@ import userRoutes from "./routes/user.route.js";
 import commentRoutes from "./routes/comment.route.js";
 import postRoutes from "./routes/post.route.js";
 
+
+
 dotenv.config();
 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors())
+  app.use(cors()); 
 
  app.use(express.json());//allows server to accept json data in req body
 
