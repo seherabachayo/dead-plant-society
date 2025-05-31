@@ -15,3 +15,37 @@ export const createPost = async (req, res) => {
          res.status(500).json({success: false, message: "Sever Error"});
      }
  };
+
+
+ export const getPosts = async (req, res) => {
+      try{
+          const posts = await Post.find({});
+          res.status(200).json({success: true, data: posts});
+      }
+      catch(error){
+          console.log("error getting posts:", error.message);
+          res.status(500).json({success: false, message: "Server error" });
+  
+      }
+  };
+
+  export const searchPosts = async (req, res) => {
+    //http://localhost:5000/api/post/search?search=key --> searches for key word key
+    try {
+    const { search } = req.query;             
+    let filter = {};
+
+    if (search) {
+      filter.caption = { 
+        $regex: search,
+        $options: ''
+      };
+    }
+
+    const posts = await Post.find(filter);
+    res.json(posts);
+
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
