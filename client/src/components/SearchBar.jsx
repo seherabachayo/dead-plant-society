@@ -10,7 +10,7 @@ export const SearchBar = () => {
     };
 
 return(
-    <form className="SearchBar" onSumbit={handleSearch}>
+    <form className="SearchBar" onSubmit={handleSearch}>
         <input type="text" placeholder="Search..." className="SearchValue" value ={query} onChange={(e) => setQuery(e.target.value)}/>
     </form>
 );

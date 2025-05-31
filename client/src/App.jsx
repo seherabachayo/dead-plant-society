@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import ExpandedPost from './pages/ExpandedPost'
 import LogForm from './components/LogForm';
+import Post from './components/Post'
 //import post_pic from "/Users/kaibacker/Downloads/IMG_0440.jpg"
 
 import CreateUser from './pages/Register';
@@ -24,6 +25,7 @@ export default function App() {
         <Routes>
          <Route path="/" element={<HomePage />} />
          <Route path="/leaderboard" element={<div>Leaderboard Page</div>} />
+          <Route path="/logform" element={<LogForm />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/expanded-post" element={<ExpandedPost/>}/>
