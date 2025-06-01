@@ -2,18 +2,45 @@ import mongoose from 'mongoose';
 
 // models/post.js
 const postSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    enum: ['post', 'obituary'],
+    required: true,
+  },
   title: {
     type: String,
     required: true,
   },
-  image: {
-    type: String, // URL or base64 string
-    required: false,
-  },
-  caption: {
+  body: {
     type: String,
-    required: true,
+    required: function() { return this.type === 'post'; }
   },
+  dates: {
+    type: String,
+    required: function() { return this.type === 'obituary'; }
+  },
+  finalMessage: {
+    type: String,
+    required: function() { return this.type === 'obituary'; }
+  },
+  images: [{
+    type: String, // URLs of images
+  }],
+  username: {
+    type: String,
+    default: 'Anonymous'
+  },
+  likes: {
+    type: Number,
+    default: 0
+  },
+  comments: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment'
+  }],
+  tags: [{
+    type: String
+  }]
 }, {
   timestamps: true, // adds createdAt and updatedAt fields
 });

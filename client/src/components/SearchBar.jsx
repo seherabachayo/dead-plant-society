@@ -1,19 +1,26 @@
-import React, {useState} from 'react'
-import './SearchBar.css'
+import React, { useState } from 'react';
+import './SearchBar.css';
 
-export const SearchBar = () => {
-    const[query,setQuery] = useState('');
+export default function SearchBar() {
+    const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearch = (e) => {
         e.preventDefault();
-        console.log("Search for:", query);
+        // TODO: Implement search functionality
+        console.log('Searching for:', searchTerm);
     };
 
-return(
-    <form className="SearchBar" onSubmit={handleSearch}>
-        <input type="text" placeholder="Search..." className="SearchValue" value ={query} onChange={(e) => setQuery(e.target.value)}/>
-    </form>
-);
-};
-
-export default SearchBar
+    return (
+        <form className="search-bar" onSubmit={handleSearch}>
+            <input
+                type="text"
+                placeholder="Search here"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button type="submit" className="search-icon">
+                🔍
+            </button>
+        </form>
+    );
+}

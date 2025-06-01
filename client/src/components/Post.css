@@ -1,14 +1,108 @@
+.post {
+    background: #E8F7EE;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #77B28C;
+    box-shadow: 0 2px 4px rgba(20, 52, 43, 0.1);
+}
+
+.post-header {
+    margin-bottom: 16px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #B098A4;
+    margin-right: 12px;
+}
+
+.username {
+    font-weight: 500;
+    color: #14342B;
+}
+
 .title {
-    text-align: left;
-    font-size: 40px;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    color: #14342B;
 }
 
-.description {
-    text-align: left;
-    font-size: 20px;
+.post-content {
+    margin-bottom: 20px;
 }
 
-.post_image {
-    /*width: 500px;*/
-    height: auto;
+.image-container {
+    margin-bottom: 16px;
+}
+
+.post-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.body {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #14342B;
+}
+
+.obituary-content {
+    margin-bottom: 20px;
+}
+
+.dates {
+    font-size: 14px;
+    color: #990D35;
+    margin-bottom: 8px;
+}
+
+.final-message {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #14342B;
+    font-style: italic;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #77B28C;
+}
+
+.interaction-counts {
+    display: flex;
+    gap: 16px;
+}
+
+.likes,
+.comments {
+    color: #990D35;
+    font-size: 14px;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+}
+
+.tag {
+    background: #77B28C;
+    color: #E8F7EE;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
 }
