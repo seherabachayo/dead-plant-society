@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native-web'; 
+import { Link } from 'react-router-dom';
 import {useEffect, useState} from 'react'; 
 import './MyProfile.css'; 
 import Post from './Post';
@@ -56,29 +57,16 @@ export default function MyProfile(){
   const [plantLogs, setPlantLogs] = useState(false); 
   const [comments, setComments] = useState(false); 
   const [alreadyDisplayed, setAlreadyDisplayed] = useState(true); 
-{/*
-  const displayOverview = () => {
-    setOverview(overview = true); 
-  }; 
 
-  const displayPosts = () => {
-    setPosts(!posts); 
-  }; 
-
-  const displayPlantLogs = () => {
-    setPlantLogs(!plantLogs); 
-  }; 
-
-  const displayComments = () => {
-    setComments(!comments); 
-  }; 
-*/}
  return(
   <div>
   <div className="da-pfp-info">
     <img className='da-user-pfp' src={ericPF.pfp}></img>
     <div className="da-user-info">
-      <p className="da-user-name">{ericComment.name}</p>
+        <div className='name-plus-edit'>
+            <p className="da-user-name">{ericComment.name}</p>
+             <Link to="/edit-profile"><button className='editBtn'>Edit Profile</button></Link>
+        </div>
       <p className='da-user-bio'>{ericPF.bio}</p>
       <div className='da-user-stats'>
         <Text className="stats"><Text style={{fontWeight: "bold"}}>{ericPF.posts}</Text> posts</Text>
@@ -87,7 +75,7 @@ export default function MyProfile(){
         <Text className="stats"><Text style={{fontWeight: "bold"}}>{ericPF.following}</Text> following</Text>
       </div>
       </div>
-      <button className='editBtn'>Edit Profile</button>
+      
     </div>
     
   <div className='category-buttons'>

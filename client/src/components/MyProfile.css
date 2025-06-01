@@ -54,6 +54,35 @@
 
 .editBtn{
     margin-top: 21px; 
-    margin-left: 70px; 
+    margin-left: 50px; 
+    background: #77B28C;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    height: 60px; 
+
 }
 
+.editBtn:hover{
+    background: #990D35;
+
+}
+
+.name-plus-edit{
+    display:flex; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.stat-button{
+    background: #77B28C;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    margin-bottom: 30px;
+}
+
+.stat-button:hover{
+    background: #990D35;
+
+}

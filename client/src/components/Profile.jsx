@@ -60,29 +60,18 @@ export default function Profile(){
   const displayFollow = () => {
     setFollowing(!following); 
   }; 
-{/*
-  const displayOverview = () => {
-    setOverview(overview = true); 
-  }; 
 
-  const displayPosts = () => {
-    setPosts(!posts); 
-  }; 
-
-  const displayPlantLogs = () => {
-    setPlantLogs(!plantLogs); 
-  }; 
-
-  const displayComments = () => {
-    setComments(!comments); 
-  }; 
-*/}
  return(
   <div>
   <div className="da-pfp-info">
     <img className='da-user-pfp' src={ericPF.pfp}></img>
     <div className="da-user-info">
-      <p className="da-user-name">{ericComment.name}</p>
+        <div className='user-plus-follower'>
+            <p className="da-user-name">{ericComment.name}</p>
+            <button className='followBtn' onClick = {() => displayFollow()}>
+                {following ? "Unfollow" : "Follow"}
+            </button>
+        </div>
       <p className='da-user-bio'>{ericPF.bio}</p>
       <div className='da-user-stats'>
         <Text className="stats"><Text style={{fontWeight: "bold"}}>{ericPF.posts}</Text> posts</Text>
@@ -91,9 +80,6 @@ export default function Profile(){
         <Text className="stats"><Text style={{fontWeight: "bold"}}>{ericPF.following}</Text> following</Text>
       </div>
       </div>
-      <button className='followBtn' onClick = {() => displayFollow()}>
-        {following ? "Unfollow" : "Follow"}
-        </button>
 
     </div>
   <div className='category-buttons'>
