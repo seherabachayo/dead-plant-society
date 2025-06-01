@@ -1,8 +1,11 @@
 import User from "../models/users.js";
 import mongoose from "mongoose";
+//add google auth 
+import { OAuth2Client } from "google-auth-library"
 
-
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 export const getUsers = async (req, res) => {
+    console.log("✅ GET /api/users hit");
     try{
         const users = await User.find({});//empty object {} means all objects in db
         res.status(200).json({success: true, data: users});
@@ -66,3 +69,38 @@ export const deleteUser = async (req, res)=> {
         res.status(500).json({sucess: false, message: "Server error"})
     }
  };
+
+ //ADD FOR GOOGLE LOGIN
+ export const googleLogin = async(req, res) => {
+    console.log("🔐 google-login route HIT");
+    const {token} = req.body;
+    
+    try {
+        const check = await client.verifyIdToken({
+            token: token, 
+            audience: process.env.GOOGLE_CLIENT_ID
+        });
+
+        const payload = check.getPayload(); 
+        const{email, name, sub} = payload; 
+
+        let user = await User.findOne({email});
+
+        if(!user){
+            user = new User({
+                username: name, 
+                email, 
+                password: sub, //dummy value since google account linked
+                provider: "google"
+            });
+            await user.save(); 
+        }
+        res.status(200).json({success:true, data:user});
+    }
+    catch(error){
+        console.error("Failure to login with Google:", error.message);
+        res.status(401).json({success: false, message: "Invalid Google Token"}); 
+    }
+
+    }; 
+
