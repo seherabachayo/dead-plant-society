@@ -54,9 +54,22 @@
 
 .followBtn{
     margin-top: 21px; 
-    margin-left: 70px; 
+    margin-left: 50px; 
+    background: #77B28C;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    height: 50px; 
+    width: 100px; 
 }
 
 .followBtn:hover{
-    background-color: rgb(85, 81, 81);
+    background: #990D35;
+}
+
+.user-plus-follower{
+    display:flex; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
