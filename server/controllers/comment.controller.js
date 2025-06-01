@@ -14,6 +14,7 @@ export const createComment = async (req, res) => {
          console.error("Error in creating comment", error.message);
          res.status(500).json({success: false, message: "Sever Error"});
      }
+    
  };
 
  export const getComments = async (req, res) => {
