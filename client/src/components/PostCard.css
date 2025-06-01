@@ -8,15 +8,15 @@
     min-width:250px; 
     padding: 1.5rem;
     margin: 1 auto; 
-    border: 1px solid #c6b5b5;
+    border: 1px solid #77B28C;
     border-radius: 10px;
-    background-color: #e0d9d9;
+    background-color: #E8F7EE;
    /* align-items:left;*/
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(20, 52, 43, 0.1);
   }
   
   .img-box {
-    border: 2px solid #555;
+    border: 2px solid #77B28C;
     flex: 0 0 300px; 
     padding: 4px;
     margin-bottom: 0.5rem;
@@ -26,5 +26,33 @@
     width: 100%;
     height: auto;
     display: block;
+  }
+  
+  .post-card h3 {
+    color: #14342B;
+    margin: 0.5rem 0;
+  }
+  
+  .post-card p {
+    color: #14342B;
+    margin: 0.5rem 0;
+  }
+  
+  .post-card em {
+    color: #990D35;
+  }
+  
+  .post-card button {
+    background-color: #77B28C;
+    color: #E8F7EE;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .post-card button:hover {
+    background-color: #990D35;
   }
   
