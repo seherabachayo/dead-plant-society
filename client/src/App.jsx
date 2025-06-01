@@ -5,6 +5,9 @@ import Home from './pages/Home';
 import CreatePostForm from './components/CreatePostForm';
 import { PostProvider } from './context/PostContext';
 import LogForm from './components/LogForm';
+import Profile from './components/Profile'; 
+import MyProfile from "./components/MyProfile";
+import EditProfile from "./components/EditProfile";
 
 export default function App() {
     return (
@@ -19,6 +22,9 @@ export default function App() {
                             <Route path="/diaries" element={<LogForm />} />
                             <Route path="/post/:id" element={<div>Individual Post View Coming Soon</div>} />
                             <Route path="*" element={<div>404 - Page Not Found</div>} />
+                            <Route path="/my-activity" element={<Profile/>}></Route>
+                            <Route path="/my-profile" element={<MyProfile/>}></Route>
+                            <Route path="/edit-profile" element={<EditProfile/>}></Route>
                         </Routes>
                     </main>
                 </div>
