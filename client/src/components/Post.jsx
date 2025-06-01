@@ -7,7 +7,7 @@ export default function Post({post}){
     return (
         <div>
             <div className="title">
-                {post.title};
+                {post.title}
             </div>
             <img className="post_image" src={post.image}/>
             <div className="description">
