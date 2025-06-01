@@ -26,7 +26,7 @@ export default function App() {
          <Route path="/leaderboard" element={<div>Leaderboard Page</div>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/expanded-post" element={<ExpandedPost/>}/>
+          <Route path="/expanded-post" element={<ExpandedPost post={fake_post}/>}/>
         </Routes>
       </div>
     </Router>
@@ -36,7 +36,7 @@ export default function App() {
 const fake_post={
     title:"Insert Post title",
     description: "This is the description",
-    //image: post_pic
+    image: "https://veryplants.com/cdn/shop/articles/Exotic-succulent-plants.jpg?v=1706711966"
 }
 
 // export default App
