@@ -23,7 +23,30 @@ export default function NavBar() {
                 <Link to="/diaries" className="nav-button">
                     PLANT DIARIES
                 </Link>
-                <div className="user-avatar"></div>
+            <li className="dropdown">
+                <Link to="/my-profile" className="dropbtn"><img className='da-pfp' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQddho8dHAH10wgORZ8jw_2gIBRxWNdKtTo5Q&s"></img>
+                </Link>
+                    <ul className='dropdown-content'>
+                    <div className='da-box'>
+                        <li>
+                            <Link to="/login">
+                            <button className="da-box-content">
+                                Sign Out</button></Link>
+                        </li>
+                        <li>
+                            <Link to="/my-activity">
+                            <button className="da-box-content">
+                                My Activity</button></Link>
+                        </li>
+                        <li>
+                            <Link to="/my-profile">
+                            <button className="da-box-content">
+                                Edit Profile</button></Link>
+                        </li>
+                    </div>
+                    </ul>
+                </li>
+
             </div>
         </nav>
     );
