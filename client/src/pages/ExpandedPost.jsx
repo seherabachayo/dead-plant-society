@@ -5,7 +5,7 @@ import './ExpandedPost.css';
 //import post_pic from "/Users/kaibacker/Downloads/IMG_0440.jpg"
 import Post from '../components/Post.jsx'
 
-
+//post not showing anything due to backend being integrated 
 
 export default function ExpandPost({post}){
     return(
@@ -20,15 +20,19 @@ export default function ExpandPost({post}){
         </div>
     )
 }
+
+/* use this {post = fake_post} to test actually 
 const fake_Comment = {
     name: "Jed",
     text: "I just got here",
-    profile_pic: "https://veryplants.com/cdn/shop/articles/Exotic-succulent-plants.jpg?v=1706711966"
+    //profile_pic: "https://veryplants.com/cdn/shop/articles/Exotic-succulent-plants.jpg?v=1706711966"
   };
   
   
 const fake_post={
     title:"Insert Post title",
     description: "This is the description",
-    image: "https://veryplants.com/cdn/shop/articles/Exotic-succulent-plants.jpg?v=1706711966"
+    //image: "https://veryplants.com/cdn/shop/articles/Exotic-succulent-plants.jpg?v=1706711966"
 }
+
+*/
