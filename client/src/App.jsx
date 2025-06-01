@@ -7,6 +7,9 @@ import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import ExpandedPost from './pages/ExpandedPost'
 import LogForm from './components/LogForm';
+import Profile from './components/Profile'; 
+import MyProfile from './components/MyProfile'; 
+import EditProfile from './components/EditProfile';
 //import post_pic from "/Users/kaibacker/Downloads/IMG_0440.jpg"
 
 import CreateUser from './pages/Register';
@@ -18,7 +21,7 @@ export default function App() {
     <Router>
       <NavBar /> 
       
-      <CreateUser />
+     
 
      <div className="App">
         <Routes>
@@ -27,6 +30,10 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/expanded-post" element={<ExpandedPost/>}/>
+          <Route path="/my-activity" element={<Profile/>}></Route>
+          <Route path="/my-profile" element={<MyProfile/>}></Route>
+          <Route path="/edit-profile" element={<EditProfile/>}></Route>
+
         </Routes>
       </div>
     </Router>
