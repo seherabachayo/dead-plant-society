@@ -1,0 +1,23 @@
+.pfp-crazy{
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: block;
+    cursor: pointer; 
+    position: relative; 
+}
+.change-photo{
+    background-color: black;
+    border-radius: 15px;
+    width: 600px; 
+    height: 90px; 
+    justify-content: flex-start;
+    display: flex; 
+    align-items: center;
+    padding: 10px; 
+}
+
+.squabble-div{
+    justify-content: center;
+    align-items: center;
+}
