@@ -38,6 +38,14 @@
   cursor: pointer;
 }
 
+.da-pfp{
+  border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: block;
+    cursor: pointer; 
+    position: relative; 
+}
 
 .navbar a:hover,
 .dropbtn:hover {
@@ -52,19 +60,30 @@
 
 
 .dropdown-content {
-  
   position: absolute;
   top: 100%; 
-  left: 0;
+  left: -180%;
   background-color: #0f0e0e;
-  min-width: 120px;
+  min-width: 140px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
+.da-box{
+  position: relative;
+  padding-top: 5px; 
+  padding: 5px; 
+  align-items: center;
+  justify-content: center;
+}
+
+.da-box-content{
+  background-color: #1e1d1d;
+  width: 120px; 
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
 /* ovverides previous global display to make sure dropdown only shows with hover   */
 .dropdown .dropdown-content {
   display: none;

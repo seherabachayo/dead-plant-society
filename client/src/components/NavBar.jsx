@@ -27,10 +27,16 @@ const NavBar = () => {
         <li><Link to="/expandedpost">Expanded Post</Link></li>
         <li><Link to="/logform">Log Form</Link></li>
         <li className="dropdown">
-          <Link to="#" className="dropbtn">Profile ▾</Link>
-          <ul className="dropdown-content">
-            <li><Link to="/login">Login</Link></li>
-          </ul>
+          {/*Will replace Eric Ou pfp with currentUser.pfp; we need to make a getCurrentUser function though*/}
+          <Link to="/my-profile" className="dropbtn"><img className="da-pfp" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQddho8dHAH10wgORZ8jw_2gIBRxWNdKtTo5Q&s"></img></Link>
+          
+            <ul className="dropdown-content">
+              <div className='da-box'>
+              <li><Link to="/login"><button className='da-box-content'>Sign Out</button></Link></li>
+              <li><Link to="/my-activity"><button className='da-box-content'>My Activity</button></Link></li>
+              <li><Link to="/edit-profile"><button className='da-box-content'>Edit Profile</button></Link></li>
+              </div>
+            </ul>
         </li>
       </ul>
     </nav>
