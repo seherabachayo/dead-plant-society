@@ -4,7 +4,7 @@ import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode"; 
 import axios from "axios"; 
 
-export const Login = () => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [pass, setPassword] = useState('');
   const navigate = useNavigate(); 
@@ -85,3 +85,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;
