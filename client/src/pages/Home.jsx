@@ -1,48 +1,57 @@
-import React from 'react';
-import { usePost } from '../context/PostContext';
+import React, { useState, useEffect } from 'react';
 import Post from '../components/Post';
 import PostCard from '../components/PostCard';
 
-const dummyPosts = [
-    {
-        name: "Basil",
-        causeOfDeath: "Overwatered",
-        epitaph: "You were tasty. You were loved.",
-        imageUrl: "https://via.placeholder.com/300x200?text=RIP+Basil"
-    },
-    {
-        name: "Cactus",
-        causeOfDeath: "Underwatered",
-        epitaph: "Deserts miss you.",
-        imageUrl: "https://via.placeholder.com/300x200?text=Dead+Cactus"
-    },
-    {
-        name: "Fern",
-        causeOfDeath: "Forgotten on vacation",
-        epitaph: "Lush no more.",
-        imageUrl: "https://via.placeholder.com/300x200?text=Fern+Gone"
-    }
-];
-
 export default function Home() {
-    const { posts, obituaries } = usePost();
+  const [posts, setPosts] = useState([]);       // will hold the fetched posts array
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true); //so we can get posts BEFORE displaying them
 
-    // Combine and sort posts and obituaries by creation date
-    const allContent = [...posts, ...obituaries].sort((a, b) => 
-        b.createdAt - a.createdAt
-    );
+  useEffect(() => {
+    fetch('http://localhost:5000/api/post')
+      .then(res => {//runs only when res is fufilled
+        if (!res.ok) throw new Error(res.statusText);
+        return res.json();
+      })
+      .then(data => {
+        if (data.success && Array.isArray(data.data)) {//make sure we got data in correct format
+          const sorted = data.data.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          );
+          setPosts(sorted);
+        } else {
+          throw new Error('Invalid format');
+        }
+      })
+      .catch(err => {
+        setError(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+  if (loading) return <p>Loading posts…</p>;//loading so posts dont display before we can get them from DB
+  if (error)   return <p>error!</p>;
+
+  // Safely get the top 3 for "Recent Tributes"
+  const recent = posts.slice(0, 3);
+//scroll container was:
+// {dummyPosts.map((post, idx) => (
+//  <PostCard key={idx} post={post} />
+//  ))}
+//only worked for dummy pots what is post card?
 
     return (
         <div className="home-layout">
             <div className="home">
                 <h2>Recent Tributes</h2>
                 <div className="scroll-container">
-                    {dummyPosts.map((post, idx) => (
-                        <PostCard key={idx} post={post} />
+                    {recent.map(content => (
+                        <Post key={content.id} post={content} />
                     ))}
                 </div>
                 <div className="content-feed">
-                    {allContent.map(content => (
+                    {posts.map(content => (
                         <Post key={content.id} post={content} />
                     ))}
                 </div>
@@ -61,7 +70,7 @@ export default function Home() {
                 
                 <div className="obituaries-section">
                     <h2>Obituaries</h2>
-                    {obituaries.map(obituary => (
+                    {posts.map(obituary => (
                         <div key={obituary.id} className="obituary-card">
                             <h3>{obituary.title}</h3>
                             <p>{obituary.dates}</p>

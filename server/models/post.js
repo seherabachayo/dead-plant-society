@@ -14,6 +14,14 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  poster: {
+    type: String,
+    required: false,
+  },
+  TOD: {
+    type: String,
+    required: false,
+  },
 }, {
   timestamps: true, // adds createdAt and updatedAt fields
 });
