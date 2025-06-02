@@ -6,6 +6,22 @@ import './NavBar.css';
 
 export default function NavBar() {
     const [loggedIn, setLoggedIn]=useState(false);
+
+    useEffect(() => {
+ const updateLoggedInStatus = () => {
+     const user = localStorage.getItem("user");
+     setLoggedIn(!!user);
+}; 
+
+ updateLoggedInStatus();
+
+ window.addEventListener("storage", updateLoggedInStatus);
+
+ return () => {
+     window.removeEventListener("storage", updateLoggedInStatus);
+ };
+}, []);
+
     return (
         <nav className="navbar">
             <div className="nav-left">
@@ -32,8 +48,15 @@ export default function NavBar() {
                     <ul className='dropdown-content'>
                     <div className='da-box'>
                         <li>
-                            <Link to="/login">
-                            <button className="da-box-content">
+                            <Link to="/">
+                            <button className="da-box-content"
+                            onClick={() => {
+                                localStorage.removeItem("user");
+                                setLoggedIn(false);
+                                window.dispatchEvent(new Event("storage")); 
+                            }}
+                            >
+                            
                                 Sign Out</button></Link>
                         </li>
                         <li>

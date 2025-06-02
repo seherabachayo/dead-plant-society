@@ -27,6 +27,7 @@ const Login = () => {
 
     if(response.ok && data.success){
       localStorage.setItem("user", JSON.stringify(data.data))
+      window.dispatchEvent(new Event("storage"));
       navigate("/");
     }
     else{
@@ -98,6 +99,9 @@ const Login = () => {
           console.log("Backend response:", data);
          
          console.log("Sending to Backend:", response.data); 
+         localStorage.setItem("user", JSON.stringify(data.data));
+        window.dispatchEvent(new Event("storage")); // 👈 added line
+          
          navigate("/");
         }
          catch(err){

@@ -117,7 +117,7 @@ export const deleteUser = async (req, res)=> {
     
     try {
         const check = await client.verifyIdToken({
-            token: token, 
+            idToken: token, 
             audience: process.env.GOOGLE_CLIENT_ID
         });
 
