@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import{createComment, getComments, deleteComment} from "../controllers/comment.controller.js"
+import{createComment, getComments, deleteComment, getLinkedComments} from "../controllers/comment.controller.js"
 
 
 
@@ -8,6 +8,10 @@ import{createComment, getComments, deleteComment} from "../controllers/comment.c
  router.post("/", createComment);
 
  router.get("/", getComments);
+
+
+ //only get comments assciated with some id
+ router.get("/linked/:id", getLinkedComments);
 
  router.delete("/:id", deleteComment);
 
