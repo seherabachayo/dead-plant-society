@@ -53,7 +53,7 @@ export const createComment = async (req, res) => {
   export const getLinkedComments = async (req, res) => {
       //http://localhost:5000/api/comments/linked/:id --> searches for all comments with that linked id
          try {
-         const { id } = req.query;             
+         const { id } = req.params;             
          let filter = {};
      
          if (id) {
@@ -64,7 +64,7 @@ export const createComment = async (req, res) => {
          }
      
          const comments = await Comment.find(filter);
-         res.json(comments);
+        res.status(200).json({success: true, data: comments});
      
          } catch (err) {
            res.status(500).json({ error: err.message });
