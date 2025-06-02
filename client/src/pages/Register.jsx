@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+
 
 
 const Register = () => {
      const [email, setEmail] = useState('');
      const[password, setPassword] = useState('');
      const[username,setName] = useState('');
+     const navigate = useNavigate(); 
+
 
      const handleSubmit = async(e) => {
         e.preventDefault();
@@ -27,6 +31,15 @@ const Register = () => {
       const data = await response.json();
       console.log('User created:', data);
       // you might redirect or clear the form here
+       
+
+      //switch to profile dropdown after successful creation 
+      localStorage.setItem("user", JSON.stringify(data.data));
+      window.dispatchEvent(new Event("storage"));
+      navigate("/");
+
+
+
     } catch (err) {
       console.error('Error creating user:', err);
     }
