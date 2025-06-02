@@ -47,3 +47,26 @@ export const createComment = async (req, res) => {
          res.status(500).json({sucess: false, message: "Server error"})
      }
   };
+
+
+
+  export const getLinkedComments = async (req, res) => {
+      //http://localhost:5000/api/comments/linked/:id --> searches for all comments with that linked id
+         try {
+         const { id } = req.query;             
+         let filter = {};
+     
+         if (id) {
+           filter.linkedPostId = { 
+             $regex: id,
+             $options: ''
+           };
+         }
+     
+         const comments = await Comment.find(filter);
+         res.json(comments);
+     
+         } catch (err) {
+           res.status(500).json({ error: err.message });
+         }
+ };
