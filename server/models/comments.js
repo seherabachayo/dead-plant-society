@@ -11,7 +11,8 @@ const commentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    associatedPostId:{
+
+    linkedPostId:{
         type: String,
         required: true
     }
