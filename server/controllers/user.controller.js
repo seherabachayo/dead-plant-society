@@ -1,11 +1,46 @@
 import User from "../models/users.js";
 import mongoose from "mongoose";
-//add google auth 
-import { OAuth2Client } from "google-auth-library"
+import bcrypt from 'bcrypt'; //to encrypt password in database 
+import { OAuth2Client } from "google-auth-library" //add google auth
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
+
+//non-google login process 
+export const login = async(req, res) => {
+
+const {email, password } = req.body; 
+try{
+    const user = await User.findOne({email});
+    if(!user || user.provider != 'local'){
+        return res.status(401).json({success:false, message:'Invalid email or password'});
+
+    }
+
+    const match = await(bcrypt.compare(password,user.password))
+    if(!match){
+        return res.status(401).json({success:false, message:'Invalid password'})
+    }
+     
+    //want to send user confirmation to frontend 
+    const {password: _, ...userData} = user.toObject();
+    res.status(200).json({
+        success: true,
+        data: userData,
+      });
+  
+    } catch (error) {
+      console.error('Login error:', error.message);
+      res.status(500).json({
+        success: false,
+        message: 'Server error',
+      });
+    }
+  };
+
+
+
+
 export const getUsers = async (req, res) => {
-    console.log("✅ GET /api/users hit");
     try{
         const users = await User.find({});//empty object {} means all objects in db
         res.status(200).json({success: true, data: users});
@@ -24,11 +59,17 @@ export const createUser = async (req, res) => {
      }
      
      //User=from our product model users.js, user=from client
-     const newUser = new User(user);
      try{
+        const hashedPassword = await bcrypt.hash(user.password, 10);
+        const newUser = new User({
+          ...user,
+          password: hashedPassword,
+          provider: "local"
+
+        }); 
          await newUser.save()//saves to our database
          res.status(201).json({success: true, data: newUser});//201 when success and something was created
-     } catch(error){
+    }catch(error){
          console.error("Error in creating user", error.message);
          res.status(500).json({success: false, message: "Sever Error"});
      }
@@ -72,7 +113,6 @@ export const deleteUser = async (req, res)=> {
 
  //ADD FOR GOOGLE LOGIN
  export const googleLogin = async(req, res) => {
-    console.log("🔐 google-login route HIT");
     const {token} = req.body;
     
     try {
