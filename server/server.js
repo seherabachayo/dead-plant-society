@@ -22,6 +22,8 @@ const PORT = process.env.PORT || 5050;
 app.use("/api/users", userRoutes);//calls methods in user.route.js
 app.use("/api/comments", commentRoutes);
 app.use("/api/post", postRoutes);
+
+
  //start server
 
 app.listen(PORT, () => {
