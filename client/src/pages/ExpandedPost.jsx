@@ -11,13 +11,14 @@ import {useState, useEffect} from 'react';
 
 export default function ExpandPost(){
     const [post, setPost] = useState(null); 
+    const [comments, setComments] = useState(null); 
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true); 
     let {id} = useParams(); 
     
     useEffect(() => {
         fetch(
-            `http://localhost:5050/api/post/${id}`
+            `http://localhost:5050/api/post/${id}` //fetches post with same id as in url
         ).then(res => {
             if(!res.ok) throw new Error(res.statusText);
             return res.json(); 
@@ -37,21 +38,51 @@ export default function ExpandPost(){
       .finally(() => {
         setLoading(false);
       });
+
+      fetch(
+            `http://localhost:5050/api/comments/linked/${id}`
+        ).then(res => {
+            if(!res.ok) throw new Error(res.statusText);
+            return res.json(); 
+        })
+        .then(
+            data=>{
+                if(data.success && Array.isArray(data.data)){
+                    setComments(data.data); 
+                }
+                else{
+                throw new Error('Invalid format');
+                }
+            })
+            .catch(err => {
+            setError(err.message);
+        })
+      .finally(() => {
+        setLoading(false);
+      });
+
   }, []);
-    if (loading) return <p>Loading posts…</p>;
+    if (loading) return <p>Loading</p>;
     if (error)   return <p>error!</p>;
 
 
     return(
         <div>
-            <div>
-            {/*<Post post={post}></Post>*/}
+            <div className="page-elmnts">
             <Post post={post}></Post>
+            <div className="commenter">
+                <p className='comment-header'>Comments?</p>
+                { comments.length != 0 ? (
+                <div className="comment-container">
+                        {comments.map(comment => (
+                            <Comment key={comment.id} values={comment}/>
+                        ))}
+                </div> ) 
+                : (<p className="apology">Sorry, there are no comments.</p>)
+                }
             </div>
-            <div className="commenter">Comments?</div>
-            <div>
-            {/*<Comment values={fake_Comment} /> */}
             </div>
+
         </div>
     )
 }
