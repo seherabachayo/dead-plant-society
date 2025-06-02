@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode"; 
+
 import axios from "axios"; 
 
 const Login = () => {
@@ -9,10 +10,34 @@ const Login = () => {
   const [pass, setPassword] = useState('');
   const navigate = useNavigate(); 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", pass);
+    
+    try{
+      const response = await fetch("http://localhost:5050/api/users/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({email, password:pass}), 
+    }); 
+    
+    const data = await response.json(); 
+    console.log("Login:", data);
+
+    if(response.ok && data.success){
+      localStorage.setItem("user", JSON.stringify(data.data))
+      navigate("/");
+    }
+    else{
+      alert(data.message || "Login failed");
+    }
+  }
+  catch(err){
+    console.error("Login failure:", err); 
+  }
+
+
   };
 
   const handleLogout = () => {
@@ -64,7 +89,7 @@ const Login = () => {
           console.log("Google Credential:", credentialResponse);
           const decoded = jwtDecode(credentialResponse.credential);
           console.log(decoded);
-          const response = await fetch("api/users/google-login", {
+          const response = await fetch("http://localhost:5050/api/users/google-login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ token: credentialResponse.credential }),
