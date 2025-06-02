@@ -10,6 +10,7 @@ import MyProfile from "./components/MyProfile";
 import EditProfile from "./components/EditProfile";
 import Login from "./pages/Login"; 
 import Register from "./pages/Register";
+import ExpandPost from "./pages/ExpandedPost";
 
 
 export default function App() {
@@ -23,7 +24,7 @@ export default function App() {
                             <Route path="/" element={<Home />} />
                             <Route path="/create" element={<CreatePostForm />} />
                             <Route path="/diaries" element={<LogForm />} />
-                            <Route path="/post/:id" element={<div>Individual Post View Coming Soon</div>} />
+                            <Route path="/post/:id" element={<ExpandPost />} />
                             <Route path="*" element={<div>404 - Page Not Found</div>} />
                             <Route path="/my-activity" element={<Profile/>}></Route>
                             <Route path="/my-profile" element={<MyProfile/>}></Route>
