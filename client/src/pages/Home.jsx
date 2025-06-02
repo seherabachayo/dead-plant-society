@@ -8,7 +8,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true); //so we can get posts BEFORE displaying them
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/post')
+    fetch('http://localhost:5050/api/post')
       .then(res => {//runs only when res is fufilled
         if (!res.ok) throw new Error(res.statusText);
         return res.json();
