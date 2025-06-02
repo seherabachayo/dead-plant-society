@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
+import {useEffect, useState} from 'react'; 
 import './NavBar.css';
 
 export default function NavBar() {
+    const [loggedIn, setLoggedIn]=useState(false);
     return (
         <nav className="navbar">
             <div className="nav-left">
@@ -16,7 +18,8 @@ export default function NavBar() {
                 <SearchBar />
             </div>
             
-            <div className="nav-right">
+            { loggedIn ? (<div className="nav-right">
+                
                 <Link to="/create" className="nav-button">
                     + POST
                 </Link>
@@ -47,7 +50,14 @@ export default function NavBar() {
                     </ul>
                 </li>
 
-            </div>
+            </div>) : (<div className='freaky-right'>
+                <Link to="/register" className="nav-button">
+                                Register
+                </Link>
+                <Link to="/login" className="nav-button">
+                                Log In
+                </Link>
+            </div>)}
         </nav>
     );
 }
