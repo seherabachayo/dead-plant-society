@@ -100,7 +100,7 @@ const Login = () => {
          
          console.log("Sending to Backend:", response.data); 
          localStorage.setItem("user", JSON.stringify(data.data));
-        window.dispatchEvent(new Event("storage")); // 👈 added line
+         window.dispatchEvent(new Event("storage")); 
           
          navigate("/");
         }

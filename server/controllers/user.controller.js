@@ -60,6 +60,13 @@ export const createUser = async (req, res) => {
      
      //User=from our product model users.js, user=from client
      try{
+
+         const isExistingUser = await User.findOne({email: user.email});
+
+        if(isExistingUser){
+            return res.status(409).json({success: false, message:"Email already registered"})
+        }
+     
         const hashedPassword = await bcrypt.hash(user.password, 10);
         const newUser = new User({
           ...user,

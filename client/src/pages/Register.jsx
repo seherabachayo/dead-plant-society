@@ -24,9 +24,15 @@ const Register = () => {
         }),
       });
 
+
+      if(response.status === 409){
+        alert("User is already created"); 
+        return; 
+      }
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+      
 
       const data = await response.json();
       console.log('User created:', data);
