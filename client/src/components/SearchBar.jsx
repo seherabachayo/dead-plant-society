@@ -32,6 +32,7 @@ export default function SearchBar() {
       } else {
         setResults(posts);
         setShowModal(true);
+        setSearchTerm('');
       }
     } catch (err) {
       console.error('Error fetching search results:', err);
