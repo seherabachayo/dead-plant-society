@@ -49,3 +49,28 @@ export const createPost = async (req, res) => {
       res.status(500).json({ error: err.message });
     }
   };
+
+
+  export const getThisPost = async (req, res) => {
+     //http://localhost:5050/api/post/:id --> searches for user id
+        const { id } = req.params;
+        const user = req.body;//what client wants to update, json of incoming req
+     
+         //make sure user id is in db
+         if (!mongoose.Types.ObjectId.isValid(id)){
+             return res.status(404).json({success: false, message: "post not found"});
+         }
+     
+         try {
+        //find the user by id
+        const post = await User.findById(id);
+        if (!post) {
+          return res.status(404).json({ success: false, message: "Post not found" });
+        }
+    
+        return res.status(200).json({ success: true, data: user });
+        } 
+        catch (error) {
+            return res.status(500).json({ success: false, message: "Server Error" });
+        }
+        };
