@@ -117,7 +117,7 @@ export default function CreatePostForm() {
 
       <form onSubmit={handleSubmit}>
         <div className="form-field">
-          <label>Title:</label>
+          <label>Cause of Death:</label>
           <input
             type="text"
             name="title"

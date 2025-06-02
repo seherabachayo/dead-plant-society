@@ -1,5 +1,5 @@
 import express from "express";
-import{ getUsers, createUser, updateUser, deleteUser, googleLogin} from "../controllers/user.controller.js"
+import{ getUsers, createUser, updateUser, deleteUser, googleLogin, searchUsers} from "../controllers/user.controller.js"
 
 const router = express.Router();
 
@@ -16,6 +16,8 @@ router.get("/", getUsers);//call get function in user.controller.js
  //to delete users in database
  router.delete("/:id", deleteUser);
 
+ //search for user, return user
+router.get('/:id', searchUsers);
 
 //update user information
 //use patch if updating some object info and put to update all of it

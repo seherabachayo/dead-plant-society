@@ -104,3 +104,29 @@ export const deleteUser = async (req, res)=> {
 
     }; 
 
+
+
+
+    export const searchUsers = async (req, res) => {
+        //http://localhost:5000/api/users/:id --> searches for user id
+        const { id } = req.params;
+        const user = req.body;//what client wants to update, json of incoming req
+ 
+     //make sure user id is in db
+     if (!mongoose.Types.ObjectId.isValid(id)){
+         return res.status(404).json({success: false, message: "user not found"});
+     }
+ 
+     try {
+    //find the user by id
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    return res.status(200).json({ success: true, data: user });
+    } 
+    catch (error) {
+        return res.status(500).json({ success: false, message: "Server Error" });
+    }
+    };
