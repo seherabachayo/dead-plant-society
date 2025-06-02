@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 
 
-export const Register = () => {
+const Register = () => {
      const [email, setEmail] = useState('');
      const[password, setPassword] = useState('');
      const[username,setName] = useState('');

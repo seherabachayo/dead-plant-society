@@ -8,6 +8,9 @@ import LogForm from './components/LogForm';
 import Profile from './components/Profile'; 
 import MyProfile from "./components/MyProfile";
 import EditProfile from "./components/EditProfile";
+import Login from "./pages/Login"; 
+import Register from "./pages/Register";
+
 
 export default function App() {
     return (
@@ -25,6 +28,8 @@ export default function App() {
                             <Route path="/my-activity" element={<Profile/>}></Route>
                             <Route path="/my-profile" element={<MyProfile/>}></Route>
                             <Route path="/edit-profile" element={<EditProfile/>}></Route>
+                            <Route path="/login" element={<Login/>}></Route>
+                            <Route path="/register" element={<Register/>}></Route>
                         </Routes>
                     </main>
                 </div>
