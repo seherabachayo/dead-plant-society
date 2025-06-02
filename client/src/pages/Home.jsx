@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Post from '../components/Post';
 import PostCard from '../components/PostCard';
+import { Link } from 'react-router-dom';
+
 
 export default function Home() {
   const [posts, setPosts] = useState([]);       // will hold the fetched posts array
@@ -47,12 +49,16 @@ export default function Home() {
                 <h2>Recent Tributes</h2>
                 <div className="scroll-container">
                     {recent.map(content => (
-                        <Post key={content.id} post={content} />
+                      <Link to={`/post/${content._id}`}>
+                        <Post key={content.id} post={content}/>
+                      </Link>
                     ))}
                 </div>
                 <div className="content-feed">
                     {posts.map(content => (
-                        <Post key={content.id} post={content} />
+                      <Link to={`/post/${content._id}`}>
+                        <Post key={content.id} post={content}/>
+                      </Link>
                     ))}
                 </div>
             </div>

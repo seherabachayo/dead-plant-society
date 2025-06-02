@@ -1,6 +1,6 @@
 import React from 'react'
 import './Post.css'
-
+import { Link } from 'react-router-dom';
 
 export default function Post({post}){
     const { 
@@ -20,7 +20,7 @@ export default function Post({post}){
         <div className="post">
             <div className="post-header">
                 <div className="user-info">
-                    <div className="user-avatar"></div>
+                    <Link to="/my-profile" className="user-avatar"></Link>
                     <span className="username">{username}</span>
                 </div>
                 <h2 className="title">{title}</h2>
