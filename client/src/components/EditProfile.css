@@ -5,19 +5,110 @@
     display: block;
     cursor: pointer; 
     position: relative; 
+    border: solid #000; 
+    border-width: 2px; 
 }
 .change-photo{
-    background-color: black;
+    background: #77B28C;
     border-radius: 15px;
     width: 600px; 
     height: 90px; 
-    justify-content: flex-start;
+    justify-content: space-between;
     display: flex; 
     align-items: center;
     padding: 10px; 
+    padding-bottom: 14px;
+    padding-top: 14px; 
+    margin-bottom: 20px;
+    border: solid #000; 
+    border-width: 2px; 
+    font-weight: bold;
+}
+
+.name-editor{
+    /*border-radius: 15px;
+    width: 600px; 
+    height: 90px; 
+    justify-content: space-between;
+    display: flex; 
+    align-items: center;
+    padding: 10px; 
+    padding-bottom: 14px;
+    padding-top: 14px; */
+    margin-bottom: 20px;
 }
 
 .squabble-div{
+    display: flex; 
+
     justify-content: center;
     align-items: center;
+}
+
+.changing-name{
+    display: flex; 
+
+    justify-content: center;
+    align-items: center;
+}
+
+.name-crazy{
+    font-size: 18px;
+}
+
+.edit-header{
+    margin-bottom: 50px;
+}
+
+.edit-bio{
+    margin-bottom: 20px; 
+}
+.change-btn{
+    justify-content: flex-end;
+    background-color: #000;
+}
+
+.pfp-plus-name{
+    display:flex; 
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+}
+
+.edit-name{
+    margin-bottom: 20px;
+}
+
+.bio-editor{
+    margin-bottom: 20px; 
+}
+
+.submit-btn{
+    background-color: black;
+    font-weight: bold;
+}
+
+.submit-btn:hover{
+    background: #990D35;
+
+}
+
+.change-card{
+    border-radius: 15px; 
+    background: #77B28C; 
+    color: white; 
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex; 
+    flex-direction: column;
+    width: 400px; 
+    height: 200px; 
+    font-weight: bold;
+    border: solid black; 
+}
+.change-par{
+    font-size: 20px; 
+}
+.change-photo-btn{
+    background-color: black;
 }
