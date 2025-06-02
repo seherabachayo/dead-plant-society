@@ -1,7 +1,13 @@
 import express from "express";
-import{ getUsers, createUser, updateUser, deleteUser, googleLogin, searchUsers} from "../controllers/user.controller.js"
+import{ login, getUsers, createUser, updateUser, deleteUser, googleLogin, searchUsers} from "../controllers/user.controller.js"
+
 
 const router = express.Router();
+
+
+
+
+router.post('/login', login); 
 
 //get all users
 // the / is prefixed by /api/users in user.route.js file
