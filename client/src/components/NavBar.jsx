@@ -29,7 +29,7 @@ export default function NavBar() {
         <nav className="navbar">
             <div className="nav-left">
                 <Link to="/" className="logo">
-                    LOGO
+                    DEAD PLANT SOCIETY
                 </Link>
             </div>
             
