@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-
+import './Login.css'
 
 
 const Register = () => {
@@ -54,6 +54,7 @@ const Register = () => {
     return (
         <form onSubmit={handleSubmit}>
     <div className="auth-form-container">
+      <div className="login-form">
      <h1>Create Your Account </h1>
     <label htmlFor="username">Full Name</label>
     <br />
@@ -87,7 +88,7 @@ const Register = () => {
 
         <button type="submit">Create an account</button>
     
-   
+   </div>
   </div> 
 </form>
     )

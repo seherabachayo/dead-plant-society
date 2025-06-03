@@ -8,6 +8,8 @@ export default function EditProfile() {
     const [bio, setBio] = useState(''); 
     const [show, setShow] = useState(false); 
 
+    
+
 
     const handleName = (e) => {
         e.preventDefault(); 
