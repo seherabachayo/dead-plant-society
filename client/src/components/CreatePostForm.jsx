@@ -106,13 +106,8 @@ export default function CreatePostForm() {
         >
           POST
         </button>
-        <button
-          className={postType === 'obituary' ? 'active' : ''}
-          onClick={() => setPostType('obituary')}
-          type="button"
-        >
-          OBITUARY
-        </button>
+        
+     
       </div>
 
       <form onSubmit={handleSubmit}>
