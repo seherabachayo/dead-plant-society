@@ -15,65 +15,64 @@
 
 
 .comment {
-  max-width: 1500px;
-  width: 90%;
+  background: #E8F7EE;
+  border-radius: 8px;
   padding: 20px;
-  border-radius: 15px;
-  height: auto;
-  border: solid black;
-  border-width: 2px;
-  justify-content: flex-start;
-  display:flex;
-  flex-direction: column;
-  gap: 10px;
-
-
-
-
+  margin-bottom: 20px;
+  border: 1px solid #77B28C;
+  box-shadow: 0 2px 4px rgba(20, 52, 43, 0.1);
+  width: 100%;
+  max-width: 800px;
 }
+
 .username {
   display: flex;
-  text-align: left;
-  gap: 20px;
-  font-size: 30px;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #14342B;
+  gap: 12px;
 }
-.comment_text {
-  display: flex;
-  color: black;
-  text-align: left;
-
-
-
-
-  gap: 20px;
-  font-size: 20px;
-}
-
-
-
-
-
-
-
 
 .profile_pic {
-  width: 80px;
-  height:auto;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
+.comment_text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #14342B;
+  margin: 0;
+}
 
+.comment_buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #77B28C;
+}
 
+.comment_buttons button {
+  background: #77B28C;
+  color: #E8F7EE;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.comment_buttons button:hover {
+  background: #990D35;
+}
 
 .freaky-btn{
   background-color: black;
-}
-
-
-
-
-.comment_buttons{
-  display: flex;
-  justify-content: center;
-  gap: 30px;
 }

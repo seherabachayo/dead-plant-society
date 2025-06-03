@@ -8,12 +8,10 @@ export default function CreatePostForm() {
     caption: '',
     image: '',
     TOD: '',
-    poster:''
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -46,24 +44,21 @@ export default function CreatePostForm() {
     setSuccessMsg('');
     setLoading(true);
 
-    let payload = {};
-
-    if (postType === 'post') {
-      payload = {
-        title: formData.title,
-        caption: formData.caption,
-        image: formData.image,
-        // if you later want to send a single image URL or base64, put it here:
-        // image: “someURLorBase64”,
-      };
-    } else {
-      // obituary
-      payload = {
-        title: formData.title,
-        caption: formData.caption,
-        image: formData.image,
-      };
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      setError('Please log in to create a post');
+      setLoading(false);
+      return;
     }
+
+    let payload = {
+      title: formData.title,
+      caption: formData.caption,
+      image: formData.image,
+      username: user.username,
+      avatar: user.avatar,
+      createdAt: new Date().toISOString(),
+    };
 
     try {
       const res = await fetch('http://localhost:5050/api/post', {
@@ -79,14 +74,12 @@ export default function CreatePostForm() {
         throw new Error(data.message || 'Failed to create post');
       }
 
-      setSuccessMsg('post created');
-      //clear the form
+      setSuccessMsg('Post created successfully');
       setFormData({
         title: '',
         caption: '',
         image: '',
         TOD: '',
-        poster:''
       });
     } catch (err) {
       console.error('Error creating post:', err);
@@ -106,8 +99,6 @@ export default function CreatePostForm() {
         >
           POST
         </button>
-        
-     
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -140,13 +131,11 @@ export default function CreatePostForm() {
                 name="image"
                 value={formData.image}
                 onChange={handleInputChange}
-                 />
+              />
             </div>
           </>
         ) : (
           <>
-           
-          
             <div className="form-field">
               <label>Caption:</label>
               <textarea
@@ -156,10 +145,7 @@ export default function CreatePostForm() {
               />
             </div>
           </>
-          
         )}
-
-       
 
         <button
           type="submit"
