@@ -15,12 +15,16 @@ export default function Post({post}){
         dates,
         finalMessage
     } = post;
+    if (!post) {
+  return <p>Loading…</p>;
+}
 
     return (
+        
         <div className="post">
             <div className="post-header">
                 <div className="user-info">
-                    <Link to="/my-profile" className="user-avatar"></Link>
+                    <div className="user-avatar"></div>
                     <span className="username">{username}</span>
                 </div>
                 <h2 className="title">{title}</h2>

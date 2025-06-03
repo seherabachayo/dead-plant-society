@@ -72,7 +72,7 @@ export default function ExpandPost(){
             <Post post={post}></Post>
             <div className="commenter">
                 <p className='comment-header'>Comments?</p>
-                { comments.length != 0 ? (
+                { comments && comments.length > 0 ? (
                 <div className="comment-container">
                         {comments.map(comment => (
                             <Comment key={comment.id} values={comment}/>
