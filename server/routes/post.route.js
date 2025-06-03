@@ -7,6 +7,6 @@ import{createPost, getPosts, searchPosts, getThisPost} from "../controllers/post
  router.get("/", getPosts);
  
  router.get('/search', searchPosts);
- router.get('/:id', getThisPosts);
+ router.get('/:id', getThisPost);
 
 export default router;
