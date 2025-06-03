@@ -39,6 +39,8 @@ export default function ExpandPost(){
         setLoading(false);
       });
 
+
+      //fetching comments 
       fetch(
             `http://localhost:5050/api/comments/linked/${id}`
         ).then(res => {
@@ -62,9 +64,38 @@ export default function ExpandPost(){
       });
 
   }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const user = JSON.parse(localStorage.getItem("user"));
+    const content = e.target.elements.commentContent.value; 
+  
+   if(!user){
+       alert("Please log in to comment.");
+       return; 
+   }
+
+   const response = await fetch("http://localhost:5050/api/comments", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        user: user._id,
+        content,
+        linkedPostId: id
+    })
+});
+
+   const result = await response.json();
+if (result.success) {
+    setComments(prev => [...prev, result.data]);
+    e.target.reset();
+} else {
+    alert("Failed to post comment.");
+}
+};
+
     if (loading) return <p>Loading</p>;
     if (error)   return <p>error!</p>;
-
 
     return(
         <div>
@@ -75,7 +106,7 @@ export default function ExpandPost(){
                 { comments && comments.length > 0 ? (
                 <div className="comment-container">
                         {comments.map(comment => (
-                            <Comment key={comment.id} values={comment}/>
+                            <Comment key={comment._id} values={comment}/>
                         ))}
                 </div> ) 
                 : (<p className="apology">Sorry, there are no comments.</p>)

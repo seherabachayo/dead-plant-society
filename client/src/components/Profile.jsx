@@ -64,7 +64,7 @@ export default function Profile(){
  return(
   <div>
   <div className="da-pfp-info">
-    <img className='da-user-pfp' src={ericPF.pfp}></img>
+  <img className='da-user-pfp' src={user?.avatar} alt="profile" />
     <div className="da-user-info">
         <div className='user-plus-follower'>
             <p className="da-user-name">{ericComment.name}</p>

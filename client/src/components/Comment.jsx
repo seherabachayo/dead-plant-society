@@ -30,10 +30,11 @@ const Comment = ({ values }) => {
 
   return (
     <div className="comment">
-      <h1 className="username">            {/*user profile pic*/}
-        <img className="profile_pic" src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQddho8dHAH10wgORZ8jw_2gIBRxWNdKtTo5Q&s"} alt={`${poster.username}'s profile`} />
-        {poster.username}
-      </h1> 
+        <h1 className="username">
+        <img className="profile_pic"
+         src={values.user.avatar} 
+         alt={`${values.user.username}'s profile`} />
+        {values.user.username}      </h1> 
       
       <h2 className="comment_text">{values.content}</h2>
 
