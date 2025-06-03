@@ -87,11 +87,7 @@ export default function NavBar() {
                             
                                 Sign Out</button></Link>
                         </li>
-                        <li>
-                            <Link to="/my-activity">
-                            <button className="da-box-content">
-                                My Activity</button></Link>
-                        </li>
+                        
                         <li>
                             <Link to="/my-profile">
                             <button className="da-box-content">
