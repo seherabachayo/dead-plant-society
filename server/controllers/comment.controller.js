@@ -8,8 +8,13 @@ export const createComment = async (req, res) => {
      
      const newComment = new Comment(comment);
      try{
+        const user = await User.findUserbyId(); 
+        if(!user){
+            return res.status(404).json({ success: false, message: "Not a user: login to continue" });
+        }
+        else{
          await newComment.save()//saves to our database
-         res.status(201).json({success: true, data: newComment});
+         res.status(201).json({success: true, data: newComment}); }
      } catch(error){
          console.error("Error in creating comment", error.message);
          res.status(500).json({success: false, message: "Sever Error"});
@@ -70,3 +75,4 @@ export const createComment = async (req, res) => {
            res.status(500).json({ error: err.message });
          }
  };
+
