@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import CreatePostForm from './components/CreatePostForm';
 import { PostProvider } from './context/PostContext';
 import LogForm from './pages/LogForm';
-import Profile from './components/Profile'; 
 import MyProfile from "./components/MyProfile";
 import EditProfile from "./components/EditProfile";
 import Login from "./pages/Login"; 
@@ -26,7 +25,6 @@ export default function App() {
                             <Route path="/diaries" element={<LogForm />} />
                             <Route path="/post/:id" element={<ExpandPost />} />
                             <Route path="*" element={<div>404 - Page Not Found</div>} />
-                            <Route path="/my-activity" element={<Profile/>}></Route>
                             <Route path="/my-profile" element={<MyProfile/>}></Route>
                             <Route path="/edit-profile" element={<EditProfile/>}></Route>
                             <Route path="/login" element={<Login/>}></Route>
