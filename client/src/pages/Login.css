@@ -1,0 +1,116 @@
+auth-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    min-height: 100vh;
+    background-color: #f0f4f3;
+  }
+  
+  .auth-form-container form {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  
+  .auth-form-container h1 {
+    color: #14342B;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .auth-form-container h2 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .auth-form-container label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+    color: #14342B;
+  }
+  
+  .auth-form-container input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .auth-form-container button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #14342B;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .auth-form-container button[type="submit"]:hover {
+    background-color: #77B28C;
+  }
+  
+  .auth-form-container p {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .auth-form-container a {
+    color: #14342B;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .auth-form-container a:hover {
+    text-decoration: underline;
+  }
+  
+  .auth-form-container > p:last-of-type {
+    margin: 1rem 0;
+    font-weight: bold;
+    color: #14342B;
+  }
+  
+ 
+  .auth-form-container .google-login {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  /*
+  .auth-form-container .reg-login{
+    background-color: #c5c5c5; 
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+  }
+ */
+  input[type="email"],
+  input[type="password"] {
+  background-color: #f0f0f0;  /* light gray */
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
