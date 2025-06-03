@@ -4,9 +4,23 @@ import './Comment.css';
 const Comment = ({ values }) => {
   const [likes, setLikes] = useState(0);
   const [poster,setPoster]=useState({});
+  const[error,setError]=useState(''); 
+  const[loading,setLoading]=useState(true); 
   useEffect(() => {
+    let userId; 
+    if(typeof values.user === 'string'){
+      userId = values.user; 
+    }
+
+    else if(values.user && values.user._id){
+      userId = values.user._id; 
+    }
+    else{
+      console.warn("Comment user format is invalid, lil bro:", values.user); 
+      return; 
+    }
           fetch(
-              `http://localhost:5050/api/users/${values.poster}` //fetches poster with same id as in url
+              `http://localhost:5050/api/users/${userId}` //fetches poster with same id as in url
           ).then(res => {
               if(!res.ok) throw new Error(res.statusText);
               return res.json(); 
@@ -26,22 +40,19 @@ const Comment = ({ values }) => {
         .finally(() => {
           setLoading(false);
         });
-  })
+  }, []);
 
   return (
     <div className="comment">
-      <h1 className="username">            {/*user profile pic*/}
-        <img className="profile_pic" src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQddho8dHAH10wgORZ8jw_2gIBRxWNdKtTo5Q&s"} alt={`${poster.username}'s profile`} />
-        {poster.username}
-      </h1> 
+        <h1 className="username">
+        <img className="profile_pic"
+         src={poster.avatar} 
+         alt={`${poster.username}'s profile`} />
+        {poster.username}      </h1> 
       
       <h2 className="comment_text">{values.content}</h2>
 
-      <div className="comment_buttons">
-        <button onClick={() => setLikes(likes + 1)} className='freaky-btn'>Likes: {likes}</button>
-        <button className='freaky-btn'>Reply?</button>
-        <button className='freaky-btn'>View Replies</button>
-      </div>
+      
     </div>
   );
 };

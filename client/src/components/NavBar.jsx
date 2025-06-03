@@ -10,17 +10,41 @@ export default function NavBar() {
         const user = localStorage.getItem("user");
         return !!user;
       });
-
+    const [poster, setPoster] = useState({});   
+    
     useEffect(() => {
- const updateLoggedInStatus = () => {
-     const user = localStorage.getItem("user");
-     setLoggedIn(!!user);
-}; 
+        const updateLoggedInStatus = () => {
+            const user = localStorage.getItem("user");
+            setLoggedIn(!!user);
+        }; 
 
  updateLoggedInStatus();
 
  window.addEventListener("storage", updateLoggedInStatus);
-
+ 
+ const user = JSON.parse(localStorage.getItem("user")); 
+    if(user){    
+        fetch(
+              `http://localhost:5050/api/users/${user._id}` //fetches poster with same id as in url
+          ).then(res => {
+              if(!res.ok) throw new Error(res.statusText);
+              return res.json(); 
+          })
+          .then(
+              data=>{
+                  if(data.success && data.data){
+                      setPoster(data.data); 
+                  }
+                  else{
+                  throw new Error('Invalid format');
+                  }
+              })
+              .catch(err => {
+              setError(err.message);
+          })
+        .finally(() => {
+         // setLoading(false);
+        })};
  return () => {
      window.removeEventListener("storage", updateLoggedInStatus);
  };
@@ -47,7 +71,7 @@ export default function NavBar() {
                     PLANT DIARIES
                 </Link>
             <li className="dropdown">
-                <Link to="/my-profile" className="dropbtn"><img className='da-pfp' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQddho8dHAH10wgORZ8jw_2gIBRxWNdKtTo5Q&s"></img>
+                <Link to="/my-profile" className="dropbtn"><img className='da-pfp' src={JSON.parse(localStorage.getItem("user"))?.avatar} alt="https://bruinwalk-assets.sfo3.cdn.digitaloceanspaces.com/media/images/professors/Paul_R_Eggert_Yi5vPr5.jpg"></img>
                 </Link>
                     <ul className='dropdown-content'>
                     <div className='da-box'>

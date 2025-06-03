@@ -2,9 +2,12 @@ import mongoose from 'mongoose';
 //comment schema
 
 const commentSchema = new mongoose.Schema({
-    poster:{
-        type: String,
-        required: false
+
+    user:{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User',
+        required: true
+
     },
     content:
     {
