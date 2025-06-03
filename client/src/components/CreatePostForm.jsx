@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CreatePostForm.css';
 
 export default function CreatePostForm() {
@@ -7,11 +7,12 @@ export default function CreatePostForm() {
     title: '',
     caption: '',
     image: '',
-    TOD: '',
+    poster: '',
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
+    
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,22 +22,6 @@ export default function CreatePostForm() {
     }));
   };
 
-  const handleTagToggle = (tag) => {
-    setFormData((prev) => {
-      const currentTags = prev.tags;
-      if (currentTags.includes(tag)) {
-        return {
-          ...prev,
-          tags: currentTags.filter((t) => t !== tag),
-        };
-      } else {
-        return {
-          ...prev,
-          tags: [...currentTags, tag],
-        };
-      }
-    });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,6 +41,7 @@ export default function CreatePostForm() {
       caption: formData.caption,
       image: formData.image,
       username: user.username,
+      poster:user._id,
       avatar: user.avatar,
       createdAt: new Date().toISOString(),
     };
@@ -79,7 +65,7 @@ export default function CreatePostForm() {
         title: '',
         caption: '',
         image: '',
-        TOD: '',
+        poster: '',
       });
     } catch (err) {
       console.error('Error creating post:', err);
