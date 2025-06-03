@@ -23,7 +23,10 @@ const userSchema = new mongoose.Schema({
         type: String, 
         enum: ['local', 'google'], 
         default:'local'
-    }
+    }, 
+    avatar: {
+     type: String
+    },
    
 
     //timestamps : true to keep track of when doc was created

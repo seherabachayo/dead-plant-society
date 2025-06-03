@@ -19,7 +19,7 @@ export default function NavBar() {
  updateLoggedInStatus();
 
  window.addEventListener("storage", updateLoggedInStatus);
-
+ 
  return () => {
      window.removeEventListener("storage", updateLoggedInStatus);
  };
@@ -46,7 +46,7 @@ export default function NavBar() {
                     PLANT DIARIES
                 </Link>
             <li className="dropdown">
-                <Link to="/my-profile" className="dropbtn"><img className='da-pfp' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQddho8dHAH10wgORZ8jw_2gIBRxWNdKtTo5Q&s"></img>
+                <Link to="/my-profile" className="dropbtn"><img className='da-pfp' src={JSON.parse(localStorage.getItem("user"))?.avatar}></img>
                 </Link>
                     <ul className='dropdown-content'>
                     <div className='da-box'>

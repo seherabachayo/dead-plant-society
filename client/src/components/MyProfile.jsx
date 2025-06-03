@@ -56,15 +56,27 @@ export default function MyProfile(){
   const [posts, setPosts] = useState(false); 
   const [plantLogs, setPlantLogs] = useState(false); 
   const [comments, setComments] = useState(false); 
-  const [alreadyDisplayed, setAlreadyDisplayed] = useState(true); 
+  const [alreadyDisplayed, setAlreadyDisplayed] = useState(true);
+  const [user, setUser] = useState(null);
+ 
+
+  
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
+
+  
 
  return(
   <div>
   <div className="da-pfp-info">
-    <img className='da-user-pfp' src={ericPF.pfp}></img>
+    <img className='da-user-pfp' src={user.avatar}></img>
     <div className="da-user-info">
         <div className='name-plus-edit'>
-            <p className="da-user-name">{ericComment.name}</p>
+            <p className="da-user-name">{user.username}</p>
              <Link to="/edit-profile"><button className='editBtn'>Edit Profile</button></Link>
         </div>
       <p className='da-user-bio'>{ericPF.bio}</p>
