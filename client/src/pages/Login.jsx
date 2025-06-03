@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode"; 
+import './Login.css'; 
+
 
 import axios from "axios"; 
 
@@ -48,43 +50,14 @@ const Login = () => {
 
   return (
     <div className="auth-form-container">
+      <div className="login-form">
       <form onSubmit={handleSubmit}>
         <h1>WELCOME TO DEAD PLANT SOCIETY</h1>
         <br />
         <h2>Log In To Begin Your Journey</h2>
 
-        <label htmlFor ="email">Email</label>
-        <br />
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          placeholder="johndoe@gmail.com"
-          id="login-email"
-        />
-        <br /><br />
-
-        <label htmlFor="password">Password</label>
-        <br />
-        <input
-          value={pass}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          placeholder="password"
-          id="login-password"
-        />
-        <br /><br />
-
-        <button type="submit">Log In</button>
-        <p>
-          Don't have an account? <Link to="/register">Register here</Link>
-        </p>
-      </form>
-
-    
-      <p>or</p>
-
-      <GoogleLogin
+        <div className="google-login">
+        <GoogleLogin
         onSuccess={async (credentialResponse) => {
         try{
           console.log("Google Credential:", credentialResponse);
@@ -110,9 +83,44 @@ const Login = () => {
         }}
         onError={() => console.log("Login failed")}
         auto_select={true}
-      />
-    </div>
-  );
-};
+       />
+       </div>
+      
+      <div className="divider"><span>OR</span></div>
 
+      {/* non Google login  */}
+      <div className="reg-login">
+        <label htmlFor ="email">Email</label>
+     
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          placeholder="Email *"
+          id="login-email"
+        />
+        <br /><br />
+
+        <label htmlFor="password">Password</label>
+     
+        <input
+          value={pass}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          placeholder="Password *"
+          id="login-password"
+        />
+        <br /><br />
+        </div>
+        <button type="submit">Log In</button>
+        </form>
+        <p>
+          Don't have an account? <Link to="/register">Register here</Link>
+        </p>
+     </div>
+     </div>
+
+      );
+   
+};
 export default Login;

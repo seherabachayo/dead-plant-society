@@ -5,7 +5,10 @@ import {useEffect, useState} from 'react';
 import './NavBar.css';
 
 export default function NavBar() {
-    const [loggedIn, setLoggedIn]=useState(false);
+    const [loggedIn, setLoggedIn] = useState(() => {
+        const user = localStorage.getItem("user");
+        return !!user;
+      });
 
     useEffect(() => {
  const updateLoggedInStatus = () => {
