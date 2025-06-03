@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 const commentSchema = new mongoose.Schema({
     poster:{
         type: String,
-        required: true
+        required: false
     },
     content:
     {
