@@ -3,6 +3,9 @@ import './Post.css'
 import { Link } from 'react-router-dom';
 
 export default function Post({post}){
+    if (!post) {
+        return <p>Loading…</p>;
+    }
     const { 
         title, 
         body, 
@@ -15,9 +18,7 @@ export default function Post({post}){
         dates,
         finalMessage
     } = post;
-    if (!post) {
-  return <p>Loading…</p>;
-    }
+    
 
     return (
         
