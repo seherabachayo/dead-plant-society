@@ -6,6 +6,7 @@ import cors from 'cors';
 import userRoutes from "./routes/user.route.js";
 import commentRoutes from "./routes/comment.route.js";
 import postRoutes from "./routes/post.route.js";
+import logRoutes from './routes/log.route.js';
 
 
 
@@ -22,6 +23,7 @@ const PORT = process.env.PORT || 5050;
 app.use("/api/users", userRoutes);//calls methods in user.route.js
 app.use("/api/comments", commentRoutes);
 app.use("/api/post", postRoutes);
+app.use('/api/logs', logRoutes);
 
 
  //start server
