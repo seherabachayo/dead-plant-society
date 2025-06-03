@@ -51,8 +51,8 @@
 }
 
 .main-content {
-    padding-top: 64px; /* Height of the navbar */
-    min-height: calc(100vh - 64px);
+    padding-top: 80px; /* Height of the navbar */
+    min-height: calc(100vh - 80px);
 }
 
 /* Reset some default styles */
