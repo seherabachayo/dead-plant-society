@@ -42,7 +42,7 @@ export default function NavBar() {
               setError(err.message);
           })
         .finally(() => {
-          setLoading(false);
+         // setLoading(false);
         })};
  return () => {
      window.removeEventListener("storage", updateLoggedInStatus);
