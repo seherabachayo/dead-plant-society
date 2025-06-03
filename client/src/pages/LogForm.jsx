@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './LogForm.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function LogForm() {
+    const navigate = useNavigate();
     const [entries, setEntries] = useState([]);
     const [form, setForm] = useState({
         Plant: "",
@@ -52,8 +54,19 @@ export default function LogForm() {
             alert("Please fill out all fields");
             return;
         }
+
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) {
+            alert('Please log in to create a plant log');
+            return;
+        }
+
         try {
-            const response = await axios.post('http://localhost:5050/api/logs', form);
+            const response = await axios.post('http://localhost:5050/api/logs', {
+                ...form,
+                userId: user._id,
+                username: user.username
+            });
             const newEntry = response.data.data;
             setEntries([newEntry, ...entries]);
             setForm({
@@ -66,6 +79,10 @@ export default function LogForm() {
             console.error('Error creating log:', error);
             alert('Failed to create log entry. Please try again.');
         }
+    };
+
+    const handleSeeMore = (userId) => {
+        navigate(`/my-activity?userId=${userId}`);
     };
 
     // Filter entries based on selected filters
@@ -201,6 +218,7 @@ export default function LogForm() {
                         <th>Symptoms</th>
                         <th>Body</th>
                         <th>Date</th>
+                        <th>User</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -212,8 +230,14 @@ export default function LogForm() {
                             <td>{entry.symptoms}</td>
                             <td>{entry.body}</td>
                             <td>{new Date(entry.date).toLocaleDateString()}</td>
+                            <td>{entry.username}</td>
                             <td>
-                                <button className="see-more-button">See more from this user</button>
+                                <button 
+                                    className="see-more-button"
+                                    onClick={() => handleSeeMore(entry.user)}
+                                >
+                                    See more from this user
+                                </button>
                             </td>
                         </tr>
                     ))}
@@ -221,5 +245,4 @@ export default function LogForm() {
             </table>
         </div>
     );
-}
-
+} 

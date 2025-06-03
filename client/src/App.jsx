@@ -4,7 +4,7 @@ import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import CreatePostForm from './components/CreatePostForm';
 import { PostProvider } from './context/PostContext';
-import LogForm from './components/LogForm';
+import LogForm from './pages/LogForm';
 import Profile from './components/Profile'; 
 import MyProfile from "./components/MyProfile";
 import EditProfile from "./components/EditProfile";

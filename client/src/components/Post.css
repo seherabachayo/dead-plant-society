@@ -23,6 +23,7 @@
     border-radius: 50%;
     background: #B098A4;
     margin-right: 12px;
+    object-fit: cover;
 }
 
 .username {
@@ -83,15 +84,54 @@
     border-top: 1px solid #77B28C;
 }
 
+.post-metadata {
+    flex: 1;
+}
+
+.post-time {
+    font-size: 14px;
+    color: #666;
+}
+
 .interaction-counts {
     display: flex;
     gap: 16px;
+    align-items: center;
 }
 
-.likes,
-.comments {
-    color: #990D35;
+.like-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
     font-size: 14px;
+    color: #14342B;
+    transition: transform 0.2s;
+}
+
+.like-button:hover {
+    transform: scale(1.1);
+}
+
+.like-button.liked {
+    color: #990D35;
+}
+
+.comment-count {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #14342B;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.comment-count:hover {
+    color: #990D35;
 }
 
 .tags {
