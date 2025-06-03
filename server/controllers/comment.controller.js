@@ -1,16 +1,22 @@
 import Comment from "../models/comments.js";
 import mongoose from "mongoose";
+import User from "../models/users.js"
 
 
 
 export const createComment = async (req, res) => {
-     const comment = req.body; // client will send this data
+     const{user, content, linkedPostId} = req.body; // client will send this data
      
-     const newComment = new Comment(comment);
+     const newComment = new Comment({
+        user, 
+        content, 
+        linkedPostId
+     });
      try{
-        const user = await User.findUserbyId(); 
+        const user = await User.findById(newComment.user); 
         if(!user){
             return res.status(404).json({ success: false, message: "Not a user: login to continue" });
+            //navigate to login page? 
         }
         else{
          await newComment.save()//saves to our database
@@ -67,8 +73,10 @@ export const createComment = async (req, res) => {
              $options: ''
            };
          }
-     
-         const comments = await Comment.find(filter);
+         
+         //change back if doesn't work
+         //const comments = await Comment.find(filter);
+         const comments = await Comment.find(filter).populate('user', 'username avatar');
         res.status(200).json({success: true, data: comments});
      
          } catch (err) {

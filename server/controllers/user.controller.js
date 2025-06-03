@@ -3,6 +3,27 @@ import mongoose from "mongoose";
 import bcrypt from 'bcrypt'; //to encrypt password in database 
 import { OAuth2Client } from "google-auth-library" //add google auth
 
+
+//add default profile pic, will assign 1 of 6 on random 
+
+const listofAvatars = [
+ "https://c02.purpledshub.com/uploads/sites/40/2023/06/julyflowerhero.jpg?w=1029&webp=1",
+ "https://hips.hearstapps.com/hmg-prod/images/high-angle-view-of-variety-of-succulent-plants-royalty-free-image-1584462052.jpg",
+ "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Fr%C3%BChling_bl%C3%BChender_Kirschenbaum.jpg/1200px-Fr%C3%BChling_bl%C3%BChender_Kirschenbaum.jpg",
+ "https://hips.hearstapps.com/hmg-prod/images/beautiful-pink-flowers-of-astrantia-major-a-summer-royalty-free-image-1709585164.jpg", 
+ "https://cdn.mos.cms.futurecdn.net/v2/t:0,l:0,cw:2000,ch:1125,q:80,w:2000/gFiEjR6MkaYHmkfgGanByD.png",
+ "https://cdn.britannica.com/50/157550-050-56DA0685/Venus-flytrap-traps-insects.jpg"
+
+
+]
+
+//randomized profile pic function 
+const getRandomAvatar= () => {
+    return listofAvatars[Math.floor(Math.random() * listofAvatars.length)];
+}; 
+
+
+
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 
 //non-google login process 
@@ -21,6 +42,8 @@ try{
         return res.status(401).json({success:false, message:'Invalid password'})
     }
      
+   
+
     //want to send user confirmation to frontend 
     const {password: _, ...userData} = user.toObject();
     res.status(200).json({
@@ -71,7 +94,8 @@ export const createUser = async (req, res) => {
         const newUser = new User({
           ...user,
           password: hashedPassword,
-          provider: "local"
+          provider: "local", 
+          avatar: getRandomAvatar()
 
         }); 
          await newUser.save()//saves to our database
@@ -138,11 +162,16 @@ export const deleteUser = async (req, res)=> {
                 username: name, 
                 email, 
                 password: sub, //dummy value since google account linked
-                provider: "google"
+                provider: "google",
+                avatar: getRandomAvatar()
             });
             await user.save(); 
         }
-        res.status(200).json({success:true, data:user});
+          
+          //return user 
+          const{password: _, ...userData} = user.toObject(); 
+
+        res.status(200).json({success:true, data:userData});
     }
     catch(error){
         console.error("Failure to login with Google:", error.message);

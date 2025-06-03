@@ -1,6 +1,6 @@
 /*
 .post-card{
-    
+   
     flex: 0 0 auto;
     width: 300px;
     padding: 1rem;
@@ -11,17 +11,24 @@
 }
   */
 
+
+
+
 .comment {
-  width: 700px;
+  max-width: 1500px;
+  width: 90%;
   padding: 20px;
   border-radius: 15px;
   height: auto;
-  border: solid black; 
+  border: solid black;
   border-width: 2px;
   justify-content: flex-start;
-  display:flex; 
+  display:flex;
   flex-direction: column;
-  gap: 10px; 
+  gap: 10px;
+
+
+
 
 }
 .username {
@@ -32,12 +39,21 @@
 }
 .comment_text {
   display: flex;
-  color: black; 
+  color: black;
   text-align: left;
+
+
+
 
   gap: 20px;
   font-size: 20px;
 }
+
+
+
+
+
+
 
 
 .profile_pic {
@@ -46,26 +62,18 @@
   border-radius: 50%;
 }
 
+
+
+
 .freaky-btn{
-  background-color: black; 
+  background-color: black;
 }
 
+
+
+
 .comment_buttons{
-  display: flex; 
+  display: flex;
   justify-content: center;
-  gap: 30px; 
+  gap: 30px;
 }
-/*
-.img-box {
-    border: 2px solid #555;
-    padding: 4px;
-    margin-bottom: 0.5rem;
-  }
-  
-  .img-box img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-*/

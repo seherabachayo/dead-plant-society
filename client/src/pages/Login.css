@@ -1,21 +1,23 @@
-auth-form-container {
+.auth-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #f0f4f3;
+    overflow: hidden;
   }
   
-  .auth-form-container form {
+  .auth-form-container .login-form {
     background-color: #ffffff;
     padding: 2rem;
     border-radius: 8px;
-    max-width: 400px;
+    max-width: 500px;
     width: 100%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
+    border: 4px solid black;
   }
 
   
@@ -43,7 +45,9 @@ auth-form-container {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid #222020;
+    background-color: rgb(240, 238, 238);
+    color: #3f3c3c;
     border-radius: 4px;
     font-size: 1rem;
     box-sizing: border-box;
@@ -83,7 +87,7 @@ auth-form-container {
   }
   
   .auth-form-container > p:last-of-type {
-    margin: 1rem 0;
+    margin: 1rem;
     font-weight: bold;
     color: #14342B;
   }
