@@ -44,7 +44,7 @@ export default function Home() {
       <div className="home">
         {/* Recent Tributes */}
         <div>
-          <h2>Recent Tributes</h2>
+          <h2>Recents Posts</h2>
           <div className="scroll-container">
             {recent.map((content) => (
               <Link
@@ -70,7 +70,7 @@ export default function Home() {
 
         {/* All Posts Feed */}
         <div>
-          <h2>All Tributes</h2>
+          <h2>All Deaths</h2>
           <div className="content-feed">
             {posts.map((content) => (
               <Link
@@ -100,7 +100,7 @@ export default function Home() {
 
 
         <aside className="obituaries-section">
-          <h2>Obituaries</h2>
+          <h2>Reasons for Death</h2>
           {posts.map((obituary) => (
             <div key={obituary._id} className="obituary-card">
               <h3>{obituary.title}</h3>
