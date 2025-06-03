@@ -34,14 +34,17 @@ export const createPost = async (req, res) => {
     //http://localhost:5000/api/post/search?search=key --> searches for key word key
     try {
     const { search } = req.query;             
-    let filter = {};
+    
 
-    if (search) {
-      filter.caption = { 
-        $regex: search,
-        $options: ''
-      };
+    if (!search || !search.trim()) {
+      return res.json([]);
     }
+    const filter = {
+      $or: [
+        { caption: { $regex: search, $options: 'i' } },
+        { title:   { $regex: search, $options: 'i' } }
+      ]
+    };
 
     const posts = await Post.find(filter);
     res.json(posts);
