@@ -75,3 +75,23 @@ export const createPost = async (req, res) => {
             return res.status(500).json({ success: false, message: "Server Error" });
         }
         };
+
+export const getMyPosts = async (req, res) => {
+              
+            try {
+            const { id } = req.params;             
+            let filter = {};
+            if (id) {
+                filter.poster = { 
+                    $regex: id,
+                    $options: ''
+                   };
+            }
+                 
+            const posts = await Post.find(filter).populate();
+            res.status(200).json({success: true, data: posts});
+             
+            } catch (err) {
+                res.status(500).json({ error: err.message });
+            }
+         };
