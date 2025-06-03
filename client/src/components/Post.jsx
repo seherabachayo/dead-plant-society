@@ -26,6 +26,11 @@ export default function Post({post}){
     } = post;
     
     const handleLike = () => {
+        const user = JSON.parse(localStorage.getItem("user"));  
+        if(!user){
+            alert("Please log in to add like.");
+        return; 
+        }        
         setIsLiked(!isLiked);
         setLikes(prev => isLiked ? prev - 1 : prev + 1);
     };
