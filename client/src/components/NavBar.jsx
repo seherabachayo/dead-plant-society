@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import {useEffect, useState} from 'react'; 
 import './NavBar.css';
+import logo from '../assets/logo.png';
 
 export default function NavBar() {
     const [loggedIn, setLoggedIn] = useState(() => {
@@ -29,7 +30,7 @@ export default function NavBar() {
         <nav className="navbar">
             <div className="nav-left">
                 <Link to="/" className="logo">
-                    LOGO
+                    <img src={logo} alt="Dead Plant Society Logo" className="nav-logo" />
                 </Link>
             </div>
             

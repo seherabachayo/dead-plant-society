@@ -80,9 +80,11 @@
   color: #E8F7EE;
   font-weight: bold;
   font-size: 20px;
-  background: #990D35;
-  padding: 8px 16px;
+  padding: 4px;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  background: transparent;
 }
 
 .nav-center {
@@ -174,6 +176,13 @@
   width: 120px;
   margin-top: 5%;
   margin-bottom: 5%;
+}
+
+.nav-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
 }
 
 
