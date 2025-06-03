@@ -29,21 +29,6 @@ export const createPost = async (req, res) => {
       }
   };
 
-  export const getOnePost = async (req, res) => { //retrieves one single post 
-      try{
-        const {id} = req.params; 
-        const post = await Post.findById(id);
-        if(!post){
-          return res.status(401).json({success:false, message:'Invalid post'})
-        }
-        res.status(200).json({success: true, data: post});
-      }
-      catch(error){
-          console.log("error getting the post:", error.message);
-          res.status(500).json({success: false, message: "Server error" });
-  
-      }
-  };
 
   export const searchPosts = async (req, res) => {
     //http://localhost:5000/api/post/search?search=key --> searches for key word key
