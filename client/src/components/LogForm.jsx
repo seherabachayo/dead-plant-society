@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './LogForm.css';
+import axios from 'axios';
 
 export default function LogForm() {
     const [entries, setEntries] = useState([]);
@@ -14,6 +15,20 @@ export default function LogForm() {
         Category: "",
         Symptoms: "",
     });
+
+    // Fetch existing logs when component mounts
+    useEffect(() => {
+        fetchLogs();
+    }, []);
+
+    const fetchLogs = async () => {
+        try {
+            const response = await axios.get('http://localhost:5050/api/logs');
+            setEntries(response.data.data);
+        } catch (error) {
+            console.error('Error fetching logs:', error);
+        }
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,32 +46,34 @@ export default function LogForm() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!form.Plant || !form.Category || !form.Symptoms || !form.Body) {
             alert("Please fill out all fields");
             return;
         }
-        const newEntry = {
-            id: Date.now(),
-            timestamp: new Date().toLocaleString(),
-            ...form
-        };
-        setEntries([...entries, newEntry]);
-        setForm({
-            Plant: "",
-            Category: "",
-            Symptoms: "",
-            Body: ""
-        });
+        try {
+            const response = await axios.post('http://localhost:5050/api/logs', form);
+            const newEntry = response.data.data;
+            setEntries([newEntry, ...entries]);
+            setForm({
+                Plant: "",
+                Category: "",
+                Symptoms: "",
+                Body: ""
+            });
+        } catch (error) {
+            console.error('Error creating log:', error);
+            alert('Failed to create log entry. Please try again.');
+        }
     };
 
     // Filter entries based on selected filters
     const filteredEntries = entries.filter((entry) => {
         return (
-            (filters.Plant === "" || entry.Plant === filters.Plant) &&
-            (filters.Category === "" || entry.Category === filters.Category) &&
-            (filters.Symptoms === "" || entry.Symptoms === filters.Symptoms)
+            (filters.Plant === "" || entry.plant === filters.Plant.toLowerCase()) &&
+            (filters.Category === "" || entry.category === filters.Category.toLowerCase()) &&
+            (filters.Symptoms === "" || entry.symptoms === filters.Symptoms.toLowerCase())
         );
     });
 
@@ -183,16 +200,18 @@ export default function LogForm() {
                         <th>Category</th>
                         <th>Symptoms</th>
                         <th>Body</th>
+                        <th>Date</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredEntries.map((entry) => (
-                        <tr key={entry.id}>
-                            <td>{entry.Plant}</td>
-                            <td>{entry.Category}</td>
-                            <td>{entry.Symptoms}</td>
-                            <td>{entry.Body}</td>
+                        <tr key={entry._id}>
+                            <td>{entry.plant}</td>
+                            <td>{entry.category}</td>
+                            <td>{entry.symptoms}</td>
+                            <td>{entry.body}</td>
+                            <td>{new Date(entry.date).toLocaleDateString()}</td>
                             <td>
                                 <button className="see-more-button">See more from this user</button>
                             </td>
