@@ -13,7 +13,7 @@ export const createComment = async (req, res) => {
         linkedPostId
      });
      try{
-        const user = await User.findUserbyId(); 
+        const user = await User.findById(newComment.user); 
         if(!user){
             return res.status(404).json({ success: false, message: "Not a user: login to continue" });
             //navigate to login page? 

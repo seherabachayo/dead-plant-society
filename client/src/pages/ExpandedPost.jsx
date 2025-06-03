@@ -6,12 +6,15 @@ import './ExpandedPost.css';
 import Post from '../components/Post.jsx'
 import { useParams } from 'react-router-dom';
 import {useState, useEffect} from 'react'; 
+import {Text, StyleSheet, TextInput, Modal, View, Button} from 'react-native-web';
 
 
 
 export default function ExpandPost(){
     const [post, setPost] = useState(null); 
     const [comments, setComments] = useState(null); 
+    const [content, setContent] = useState('');
+    const [linkedPostId, setLinkedPostId] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true); 
     let {id} = useParams(); 
@@ -65,37 +68,58 @@ export default function ExpandPost(){
 
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const user = JSON.parse(localStorage.getItem("user"));
-    const content = e.target.elements.commentContent.value; 
-  
-   if(!user){
-       alert("Please log in to comment.");
-       return; 
-   }
+    const handleSubmit = async(e) => {
+            e.preventDefault();
+            const user = JSON.parse(localStorage.getItem("user"));  
+            if(!user){
+                alert("Please log in to comment.");
+            return; 
+            }        
+        // console.log(email);
+                try {
+        const response = await fetch('http://localhost:5050/api/comments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+            user: user._id,
+            content,
+            linkedPostId: id,
+            }),
+        });
+        if (!response.ok) {
+            throw new Error(`That ain't a comment! Get out! status: ${response.status}`);
+        }
+       
+        const data = await response.json();
+        console.log('Comment created:', data);
 
-   const response = await fetch("http://localhost:5050/api/comments", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-        user: user._id,
-        content,
-        linkedPostId: id
-    })
-});
+        const updatedRes = await fetch(`http://localhost:5050/api/comments/linked/${id}`);
+        const updatedComments = await updatedRes.json();
+        setComments(updatedComments.data);
 
-   const result = await response.json();
-if (result.success) {
-    setComments(prev => [...prev, result.data]);
-    e.target.reset();
-} else {
-    alert("Failed to post comment.");
-}
-};
+        setContent(''); 
+        // you might redirect or clear the form here
+        } catch (err) {
+        console.error('Error creating user:', err);
+        }
+    };
+
 
     if (loading) return <p>Loading</p>;
     if (error)   return <p>error!</p>;
+
+    const styles = StyleSheet.create({
+            input:{
+                borderRadius: 15,
+                borderWidth: 2,
+                width: 1000,
+                height: 90,
+                padding: 10,
+                paddingBottom: 14,
+                paddingTop: 14,
+                color: "#000000",
+            }
+        })
 
     return(
         <div>
@@ -103,13 +127,17 @@ if (result.success) {
             <Post post={post}></Post>
             <div className="commenter">
                 <p className='comment-header'>Comments?</p>
+                <form className='make-comment' onSubmit={handleSubmit}>
+                    <TextInput style={styles.input} maxLength={200} editable multiline placeholder='Add your own comment' value={content} onChangeText={setContent}/>
+                    <button className='freaky-btn' >Post Comment</button>
+                </form>
                 { comments && comments.length > 0 ? (
                 <div className="comment-container">
                         {comments.map(comment => (
                             <Comment key={comment._id} values={comment}/>
                         ))}
                 </div> ) 
-                : (<p className="apology">Sorry, there are no comments.</p>)
+                : (<p className="apology">The plants may be dead, but don't let the convo die. Comment first.</p>)
                 }
             </div>
             </div>
