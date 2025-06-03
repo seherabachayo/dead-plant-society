@@ -7,7 +7,7 @@ import Post from '../components/Post.jsx'
 import { useParams } from 'react-router-dom';
 import {useState, useEffect} from 'react'; 
 
-//post not showing anything due to backend being integrated 
+
 
 export default function ExpandPost(){
     const [post, setPost] = useState(null); 
