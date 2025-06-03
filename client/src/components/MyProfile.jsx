@@ -61,14 +61,20 @@ export default function MyProfile(){
  
 
   
+  
   useEffect(() => {
-    const savedUser = localStorage.getItem('user');
+  const savedUser = localStorage.getItem('user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
   }, []);
 
-  
+  // If user is still null (e.g. loading or not logged in), show a placeholder
+  if (!user) {
+    return <div className="loading-placeholder">Loading profile…</div>;
+  }
+   
+        
 
  return(
   <div>
