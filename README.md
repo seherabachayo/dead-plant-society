@@ -22,7 +22,6 @@ Every user receives a unique profile, initially set with a randomized plant-them
 4) **<u>cd client**<u>
 5) **<u>npm install**<u>
 6) **<u>cd .. **<u>
-
       - to run this program in the directory of dead-plant-society 
 6) **<u>npm run start**<u>
 
