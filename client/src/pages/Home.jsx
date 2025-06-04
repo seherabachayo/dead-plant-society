@@ -1,12 +1,15 @@
 // Home.jsx
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Post from '../components/Post';
 import './Home.css';
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:5050/api/post')
@@ -21,6 +24,14 @@ export default function Home() {
             (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
           );
           setPosts(sorted);
+          
+          // Calculate categories/death reasons
+          const categoryCount = sorted.reduce((acc, post) => {
+            const category = post.title || 'Unknown';
+            acc[category] = (acc[category] || 0) + 1;
+            return acc;
+          }, {});
+          setCategories(categoryCount);
         } else {
           throw new Error('Invalid format');
         }
@@ -38,77 +49,71 @@ export default function Home() {
 
   const recent = posts.slice(0, 3);
 
+  const handlePostClick = (postId) => {
+    navigate(`/post/${postId}`);
+  };
+
   return (
     <div className="home-layout">
       {/* Main content column */}
-      <div className="home">
+      <div className="home-main">
         {/* Recent Tributes */}
-        <div>
-          <h2>Recents Posts</h2>
-          <div className="scroll-container">
-            {recent.map((content) => (
-              <Link
-                key={content._id}
-                to={`/post/${content._id}`}
-                className="post-card"
+        <section className="recent-posts">
+          <h2>Recent Posts</h2>
+          <div className="recent-posts-grid">
+            {recent.map((post) => (
+              <div
+                key={post._id}
+                onClick={() => handlePostClick(post._id)}
+                className="recent-post-card"
               >
-                {content.image && (
-                  <img
-                    src={content.image}
-                    alt={content.title}
-                    className="post-image"
-                  />
-                )}
-                <h3 className="post-title">{content.title}</h3>
-                {content.caption && (
-                  <p className="post-caption">{content.caption}</p>
-                )}
-              </Link>
+                <div className="recent-post-image">
+                  {post.image && (
+                    <img src={post.image} alt={post.title} />
+                  )}
+                </div>
+                <div className="recent-post-content">
+                  <h3>{post.title}</h3>
+                  {post.caption && <p>{post.caption}</p>}
+                </div>
+              </div>
             ))}
           </div>
-        </div>
+        </section>
 
         {/* All Posts Feed */}
-        <div>
+        <section className="all-posts">
           <h2>All Deaths</h2>
-          <div className="content-feed">
-            {posts.map((content) => (
-              <Link
-                key={content._id}
-                to={`/post/${content._id}`}
-                className="post-card"
+          <div className="posts-feed">
+            {posts.map((post) => (
+              <div
+                key={post._id}
+                onClick={() => handlePostClick(post._id)}
+                className="post-wrapper"
               >
-                {content.image && (
-                  <img
-                    src={content.image}
-                    alt={content.title}
-                    className="post-image"
-                  />
-                )}
-                <h3 className="post-title">{content.title}</h3>
-                {content.caption && (
-                  <p className="post-caption">{content.caption}</p>
-                )}
-              </Link>
+                <Post post={post} />
+              </div>
             ))}
           </div>
-        </div>
+        </section>
       </div>
 
       {/* Sidebar */}
-      <div>
-
-
-        <aside className="obituaries-section">
-          <h2>Reasons for Death</h2>
-          {posts.map((obituary) => (
-            <div key={obituary._id} className="obituary-card">
-              <h3>{obituary.title}</h3>
-              {obituary.dates && <p>{obituary.dates}</p>}
-            </div>
-          ))}
-        </aside>
-      </div>
+      <aside className="home-sidebar">
+        <div className="categories-section">
+          <h2>Common Causes of Death</h2>
+          <div className="categories-list">
+            {Object.entries(categories)
+              .sort(([, a], [, b]) => b - a)
+              .slice(0, 10)
+              .map(([category]) => (
+                <div key={category} className="category-item">
+                  <span className="category-name">{category}</span>
+                </div>
+              ))}
+          </div>
+        </div>
+      </aside>
     </div>
   );
 }
