@@ -1,5 +1,5 @@
 # Project Overview
-Dead Plant Society allows you to morn your dead plants with friends! You can make posts, diaries, check out the causes of deaths of plants, comment on other's posts, and more.
+Dead Plant Society allows you to mourn your dead plants with friends! You can make posts, diaries, check out the causes of deaths of plants, comment on other's posts, and more.
 
 ## To run project
 1) clone this repo
