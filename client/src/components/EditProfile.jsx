@@ -9,6 +9,8 @@ export default function EditProfile() {
     const [show, setShow] = useState(false); 
     const [user, setUser] = useState(null);
     const [error, setError] = useState('');
+    const [isUploading, setIsUploading] = useState(false);
+    const fileInputRef = useRef(null);
 
     useEffect(() => {
         const savedUser = localStorage.getItem('user');
@@ -20,6 +22,41 @@ export default function EditProfile() {
     if (!user) {
         return <div className="loading-placeholder">Loading profile...</div>;
     }
+
+    const compressImage = (file) => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (event) => {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+
+                    // Calculate new dimensions while maintaining aspect ratio
+                    const maxDimension = 800; // Max width or height
+                    if (width > height && width > maxDimension) {
+                        height = (height * maxDimension) / width;
+                        width = maxDimension;
+                    } else if (height > maxDimension) {
+                        width = (width * maxDimension) / height;
+                        height = maxDimension;
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    // Get compressed image as base64 string
+                    const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7); // 0.7 quality
+                    resolve(compressedBase64);
+                };
+            };
+        });
+    };
 
     const handleName = async (e) => {
         e.preventDefault(); 
@@ -61,6 +98,62 @@ export default function EditProfile() {
         }
     }; 
 
+    const handlePhotoUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        // Check file type
+        if (!file.type.startsWith('image/')) {
+            setError('Please upload an image file');
+            return;
+        }
+
+        // Check file size (limit to 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+            setError('Image size should be less than 5MB');
+            return;
+        }
+
+        setIsUploading(true);
+        setError('');
+
+        try {
+            // Compress the image
+            const compressedBase64 = await compressImage(file);
+            
+            // Update user with new avatar
+            const response = await fetch(`/api/users/${user._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: user.username,
+                    email: user.email,
+                    provider: user.provider,
+                    avatar: compressedBase64
+                })
+            });
+
+            const result = await response.json();
+            
+            if (response.ok && result.success) {
+                const updatedUser = result.data;
+                setUser(updatedUser);
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+                setShow(false); // Close modal after successful update
+                setError(''); // Clear any errors
+            } else {
+                setError(result.message || 'Failed to update profile photo');
+            }
+        } catch (error) {
+            setError('Error uploading photo');
+            console.error('Error uploading photo:', error);
+        } finally {
+            setIsUploading(false);
+        }
+    };
+
     const styles = StyleSheet.create({
         input:{
             borderRadius: 15,
@@ -80,8 +173,27 @@ export default function EditProfile() {
                     <View>
                         <div className="change-card">
                             <p className='change-par'>Change Your Photo</p>
-                            <button className="change-photo-btn">Upload photo</button>
-                            <button className="change-photo-btn" onClick={() => setShow(false)}>Cancel</button>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handlePhotoUpload}
+                                style={{ display: 'none' }}
+                                ref={fileInputRef}
+                            />
+                            <button 
+                                className="change-photo-btn"
+                                onClick={() => fileInputRef.current.click()}
+                                disabled={isUploading}
+                            >
+                                {isUploading ? 'Uploading...' : 'Upload photo'}
+                            </button>
+                            <button 
+                                className="change-photo-btn" 
+                                onClick={() => setShow(false)}
+                                disabled={isUploading}
+                            >
+                                Cancel
+                            </button>
                         </div>
                     </View>
                 </View>

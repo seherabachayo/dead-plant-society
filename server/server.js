@@ -18,7 +18,9 @@ const PORT = process.env.PORT || 5050;
 
   app.use(cors()); 
 
- app.use(express.json());//allows server to accept json data in req body
+// Increase payload limit to 10MB
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 app.use("/api/users", userRoutes);//calls methods in user.route.js
 app.use("/api/comments", commentRoutes);

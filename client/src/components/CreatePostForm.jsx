@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './CreatePostForm.css';
 
 export default function CreatePostForm() {
@@ -12,6 +12,8 @@ export default function CreatePostForm() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
+  const [imageType, setImageType] = useState('url'); // 'url' or 'file'
+  const fileInputRef = useRef(null);
     
 
   const handleInputChange = (e) => {
@@ -22,6 +24,69 @@ export default function CreatePostForm() {
     }));
   };
 
+  const compressImage = (file) => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+
+          // Calculate new dimensions while maintaining aspect ratio
+          const maxDimension = 800;
+          if (width > height && width > maxDimension) {
+            height = (height * maxDimension) / width;
+            width = maxDimension;
+          } else if (height > maxDimension) {
+            width = (width * maxDimension) / height;
+            height = maxDimension;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          // Get compressed image as base64 string
+          const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
+          resolve(compressedBase64);
+        };
+      };
+    });
+  };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Check file type
+    if (!file.type.startsWith('image/')) {
+      setError('Please upload an image file');
+      return;
+    }
+
+    // Check file size (limit to 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      setError('Image size should be less than 5MB');
+      return;
+    }
+
+    try {
+      const compressedBase64 = await compressImage(file);
+      setFormData(prev => ({
+        ...prev,
+        image: compressedBase64
+      }));
+      setError(null);
+    } catch (err) {
+      setError('Error processing image');
+      console.error('Error processing image:', err);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +106,7 @@ export default function CreatePostForm() {
       caption: formData.caption,
       image: formData.image,
       username: user.username,
-      poster:user._id,
+      poster: user._id,
       avatar: user.avatar,
       createdAt: new Date().toISOString(),
     };
@@ -67,6 +132,7 @@ export default function CreatePostForm() {
         image: '',
         poster: '',
       });
+      setImageType('url');
     } catch (err) {
       console.error('Error creating post:', err);
       setError(err.message);
@@ -111,14 +177,58 @@ export default function CreatePostForm() {
               />
             </div>
             <div className="form-field">
-              <label>Image URL:</label>
-              <input
-                type="text"
-                name="image"
-                value={formData.image}
-                onChange={handleInputChange}
-              />
+              <label>Image:</label>
+              <div className="image-input-toggle">
+                <button
+                  type="button"
+                  className={`toggle-btn ${imageType === 'url' ? 'active' : ''}`}
+                  onClick={() => setImageType('url')}
+                >
+                  URL
+                </button>
+                <button
+                  type="button"
+                  className={`toggle-btn ${imageType === 'file' ? 'active' : ''}`}
+                  onClick={() => setImageType('file')}
+                >
+                  Upload
+                </button>
+              </div>
+              {imageType === 'url' ? (
+                <input
+                  type="text"
+                  name="image"
+                  value={formData.image}
+                  onChange={handleInputChange}
+                  placeholder="Enter image URL"
+                />
+              ) : (
+                <div className="file-input-container">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    ref={fileInputRef}
+                    style={{ display: 'none' }}
+                  />
+                  <button
+                    type="button"
+                    className="file-select-btn"
+                    onClick={() => fileInputRef.current.click()}
+                  >
+                    Choose File
+                  </button>
+                  {formData.image && imageType === 'file' && (
+                    <span className="file-selected">Image selected</span>
+                  )}
+                </div>
+              )}
             </div>
+            {formData.image && (
+              <div className="image-preview">
+                <img src={formData.image} alt="Preview" />
+              </div>
+            )}
           </>
         ) : (
           <>
