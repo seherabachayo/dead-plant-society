@@ -47,11 +47,13 @@
 }
 
 .post-image {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    border-radius: 4px;
-}
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+  
+
 
 .body {
     font-size: 16px;
