@@ -7,9 +7,19 @@ export default function EditProfile() {
     const[name, setName] = useState(''); 
     const [bio, setBio] = useState(''); 
     const [show, setShow] = useState(false); 
+    const [user, setUser] = useState(null);
+    const [showSubmit, setShowSubmit] = useState(false);
 
-    
+    useEffect(() => {
+        const savedUser = localStorage.getItem('user');
+        if (savedUser) {
+            setUser(JSON.parse(savedUser));
+        }
+    }, []);
 
+    if (!user) {
+        return <div className="loading-placeholder">Loading profile...</div>;
+    }
 
     const handleName = (e) => {
         e.preventDefault(); 
@@ -36,14 +46,13 @@ export default function EditProfile() {
     return(
         <div>
             <Modal transparent={true} visible={show}>
-                <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
+                <View className="modal-overlay">
                     <View>
                         <div className="change-card">
-                        <p className='change-par'>Change Your Photo</p>
-                        <button className="change-photo-btn">Upload photo</button>
-                        <button className="change-photo-btn" onClick={() => setShow(false)}>Cancel</button>
+                            <p className='change-par'>Change Your Photo</p>
+                            <button className="change-photo-btn">Upload photo</button>
+                            <button className="change-photo-btn" onClick={() => setShow(false)}>Cancel</button>
                         </div>
-
                     </View>
                 </View>
             </Modal>
@@ -51,8 +60,8 @@ export default function EditProfile() {
             <div className='squabble-div'>
                 <div className='change-photo'>
                     <div className='pfp-plus-name'>
-                        <img className="pfp-crazy" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQddho8dHAH10wgORZ8jw_2gIBRxWNdKtTo5Q&s" onClick={() => setShow(true)}></img>
-                        <p className='name-crazy'>Eric Ou</p>
+                        <img className="pfp-crazy" src={user.avatar} alt={`${user.username}'s avatar`} onClick={() => setShow(true)}></img>
+                        <p className='name-crazy'>{user.username}</p>
                     </div>
                     <button className='change-btn' onClick={() => setShow(true)}>Change Photo</button>
                 </div>
@@ -69,8 +78,5 @@ export default function EditProfile() {
             </form>
             <button type="button" className='submit-btn' onClick={() => setShowSubmit(true)}>Submit changes</button>
         </div>
-
-
-
     )
 }
