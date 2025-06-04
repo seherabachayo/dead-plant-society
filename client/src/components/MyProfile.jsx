@@ -7,6 +7,9 @@ export default function MyProfile() {
   const [myPostsData, setMyPostsData] = useState([]);
   const [loadingPosts, setLoadingPosts] = useState(false);
   const [postsError, setPostsError] = useState(null);
+  const [text, setText] = useState(
+              "Welcome to the Dead Plant Society! try not to kill anything"
+          );
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
@@ -54,6 +57,11 @@ export default function MyProfile() {
           </div>
         </div>
       </div>
+      <div className="text">{text}</div>
+        <button className="funBtn" onClick={() => setText("Murderer! Make a post about it to feel better.")}>
+            Click me when you kill a plant
+        </button>
+        <div className = "heP"> Your Posts </div>
 
       <div className="posts-display">
         {loadingPosts && <p>Loading posts…</p>}
