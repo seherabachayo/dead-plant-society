@@ -3,7 +3,7 @@ import './Post.css'
 import { Link } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 
-export default function Post({post}){
+export default function Post({post, shorten=true}){
     const [likes, setLikes] = useState(0);
     const [isLiked, setIsLiked] = useState(false);
     const [poster, setPoster] = useState({});
@@ -64,13 +64,18 @@ export default function Post({post}){
     
     const { 
         title, 
-        body, 
+        caption: body, 
         image, 
         type,
         dates,
         finalMessage,
         createdAt,
     } = post;
+    
+    //shortens body if > than 200 chars
+    const displayBody = shorten && body && body.length > 200
+    ? `${body.substring(0, 200)}...`
+     : body || '';
     
     const handleLike = () => {
         const user = JSON.parse(localStorage.getItem("user"));  
@@ -112,7 +117,11 @@ export default function Post({post}){
                             <img src={image} alt={title} className="post-image" />
                         </div>
                     )}
-                    <div className="body">{body}</div>
+                     {shorten && body.length > 200 && (
+                    <Link to={`/post/${post._id}`} className="read-more-link">
+                     Read more
+                    </Link>
+            )}
                 </div>
             )}
 

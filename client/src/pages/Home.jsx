@@ -91,7 +91,7 @@ export default function Home() {
                 onClick={() => handlePostClick(post._id)}
                 className="post-wrapper"
               >
-                <Post post={post} />
+                <Post post={post} shorten={true} />
               </div>
             ))}
           </div>
