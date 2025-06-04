@@ -21,7 +21,11 @@ Every user receives a unique profile, initially set with a randomized plant-them
 3) **<u>npm install**<u>
 4) **<u>cd client**<u>
 5) **<u>npm install**<u>
+6) **<u>cd .. **<u>
+
+      - to run this program in the directory of dead-plant-society 
 6) **<u>npm run start**<u>
+
      FYI: make sure this starts 2 servers if it doesn't, stop all your servers and run
        1. "npm run dev" .../dead-plant-society
        2.  "npm run dev" in .../dead-plant-society/client
