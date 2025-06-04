@@ -1,4 +1,3 @@
-// Home.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Post from '../components/Post';
@@ -74,7 +73,13 @@ export default function Home() {
                 </div>
                 <div className="recent-post-content">
                   <h3>{post.title}</h3>
-                  {post.caption && <p>{post.caption}</p>}
+                  {post.caption && (
+                    <p>
+                      {post.caption.length > 200
+                        ? `${post.caption.slice(0, 200)}...`
+                        : post.caption}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
