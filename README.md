@@ -18,10 +18,11 @@ Every user receives a unique profile, initially set with a randomized plant-them
 1) clone this repo
 2) cd into ../dead-plant-society in the cloned repo and run these commands:
    ->npm install
-3) cd into into ../dead-plant-society/client
+3) cd into into .../dead-plant-society/client
    -> npm install
-5) "npm run start" in the directory .../dead-plant-society
-6) Go to: http://localhost:5173/
+5) "npm run start" in the directory .../dead-plant-society, make sure this starts 2 servers if it doesn't stop all your servers and run "npm run dev" .../dead-plant-society "npm run dev" in .../dead-plant-society/client
+   
+7) Go to: http://localhost:5173/
    
 ## Frontend/Client
 [Wireframe with Figma](https://www.figma.com/proto/CmIghaJqtwueHUzS7WTfpB/dead-plant-society-wireframe?node-id=14-359&t=kMpSE8qtOruoIAtG-1)
