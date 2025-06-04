@@ -5,110 +5,163 @@
     display: block;
     cursor: pointer; 
     position: relative; 
-    border: solid #000; 
-    border-width: 2px; 
+    border: 1px solid #77B28C;
+    object-fit: cover;
 }
 .change-photo{
-    background: #77B28C;
-    border-radius: 15px;
-    width: 600px; 
-    height: 90px; 
-    justify-content: space-between;
-    display: flex; 
-    align-items: center;
-    padding: 10px; 
-    padding-bottom: 14px;
-    padding-top: 14px; 
+    background: #E8F7EE;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
     margin-bottom: 20px;
-    border: solid #000; 
-    border-width: 2px; 
-    font-weight: bold;
+    border: 1px solid #77B28C;
+    box-shadow: 0 2px 4px rgba(20, 52, 43, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .name-editor{
-    /*border-radius: 15px;
-    width: 600px; 
-    height: 90px; 
-    justify-content: space-between;
-    display: flex; 
-    align-items: center;
-    padding: 10px; 
-    padding-bottom: 14px;
-    padding-top: 14px; */
-    margin-bottom: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 20px;
 }
 
 .squabble-div{
-    display: flex; 
-
+    display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 20px;
 }
 
 .changing-name{
-    display: flex; 
-
+    display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .name-crazy{
     font-size: 18px;
+    font-weight: 500;
+    color: #14342B;
+    margin: 0;
 }
 
 .edit-header{
-    margin-bottom: 50px;
+    margin: 80px 0 40px;
+    font-size: 28px;
+    color: #333;
+    text-align: center;
 }
 
-.edit-bio{
-    margin-bottom: 20px; 
+.edit-bio,
+.edit-name {
+    margin: 0 0 12px;
+    font-size: 20px;
+    color: #14342B;
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto 12px;
+    padding: 0 20px;
 }
+
 .change-btn{
-    justify-content: flex-end;
-    background-color: #000;
+    background: #77B28C;
+    color: #E8F7EE;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.change-btn:hover{
+    background: #990D35;
 }
 
 .pfp-plus-name{
-    display:flex; 
-    justify-content: space-between;
+    display: flex;
     align-items: center;
-    width: 150px;
-}
-
-.edit-name{
-    margin-bottom: 20px;
+    gap: 12px;
 }
 
 .bio-editor{
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    padding: 0 20px;
 }
 
 .submit-btn{
-    background-color: black;
-    font-weight: bold;
+    background: #990D35;
+    color: #E8F7EE;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: block;
+    margin: 30px auto;
 }
 
 .submit-btn:hover{
-    background: #990D35;
-
+    background: #14342B;
 }
 
 .change-card{
-    border-radius: 15px; 
-    background: #77B28C; 
-    color: white; 
-    justify-content: space-evenly;
-    align-items: center;
-    display: flex; 
+    border-radius: 8px;
+    background: #E8F7EE;
+    color: #14342B;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 2px 4px rgba(20, 52, 43, 0.1);
+    border: 1px solid #77B28C;
+    display: flex;
     flex-direction: column;
-    width: 400px; 
-    height: 200px; 
-    font-weight: bold;
-    border: solid black; 
+    align-items: center;
+    gap: 16px;
+    position: fixed;
+    top: 50%;
+    left: 65%;
+    transform: translate(-50%, -50%);
 }
 .change-par{
-    font-size: 20px; 
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+    color: #14342B;
 }
 .change-photo-btn{
-    background-color: black;
+    background: #77B28C;
+    color: #E8F7EE;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+.change-photo-btn:hover{
+    background: #990D35;
+}
+
+/* Add styles for the modal overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(20, 52, 43, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
