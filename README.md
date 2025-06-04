@@ -17,6 +17,9 @@ Every user receives a unique profile, initially set with a randomized plant-them
 
 ## To run project
 1) **<u>git clone https://github.com/Dead-Plant-Society/dead-plant-society.git**<u>
+     - OR,
+     **<u>tar -xzf dead-plant-society.tar.gz**<u>
+       - if you are unpacking the source code from a tarball 
 2) **<u>cd dead-plant-society**<u>
 3) **<u>npm install**<u>
 4) **<u>cd client**<u>
