@@ -26,6 +26,11 @@
     width: 100%;
     max-width: 800px;
     margin: 0 auto 20px;
+    background: #E8F7EE;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #77B28C;
+    box-shadow: 0 2px 4px rgba(20, 52, 43, 0.1);
 }
 
 .squabble-div{

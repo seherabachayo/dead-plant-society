@@ -91,7 +91,7 @@ export default function NavBar() {
                         <li>
                             <Link to="/my-profile">
                             <button className="da-box-content">
-                                Edit Profile</button></Link>
+                                My Profile</button></Link>
                         </li>
                     </div>
                     </ul>
