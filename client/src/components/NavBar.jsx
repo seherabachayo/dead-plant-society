@@ -67,7 +67,8 @@ export default function NavBar() {
         <nav className="navbar">
             <div className="nav-left">
                 <Link to="/" className="logo">
-                    <img src={logo} alt="Dead Plant Society Logo" className="nav-logo" />
+                Dead-Plant-Society
+                    {/* <img src={logo} alt="Dead Plant Society Logo" className="nav-logo" /> */}
                 </Link>
             </div>
             
