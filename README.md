@@ -21,15 +21,15 @@ Every user receives a unique profile, initially set with a randomized plant-them
 3) **<u>npm install**<u>
 4) **<u>cd client**<u>
 5) **<u>npm install**<u>
-6) **<u>cd .. **<u>
+6) **<u>cd ..l**<u>
       - to run this program in the directory of dead-plant-society 
-6) **<u>npm run start**<u>
+7) **<u>npm run start**<u>
 
      FYI: make sure this starts 2 servers if it doesn't, stop all your servers and run
        1. "npm run dev" .../dead-plant-society
        2.  "npm run dev" in .../dead-plant-society/client
    
-7) Go to: http://localhost:5173/ 
+8) Go to: http://localhost:5173/ 
    
 ## Frontend/Client
 [Wireframe with Figma](https://www.figma.com/proto/CmIghaJqtwueHUzS7WTfpB/dead-plant-society-wireframe?node-id=14-359&t=kMpSE8qtOruoIAtG-1)
