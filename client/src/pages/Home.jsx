@@ -61,7 +61,12 @@ export default function Home() {
                 )}
                 <h3 className="post-title">{content.title}</h3>
                 {content.caption && (
-                  <p className="post-caption">{content.caption}</p>
+                  <p className="post-caption">
+                    {/*shorten post length, expand in expand post   */}
+                    {content.caption.length > 200
+                      ? `${content.caption.substring(0, 200)}...`
+                      : content.caption}
+                  </p>
                 )}
               </Link>
             ))}
@@ -87,7 +92,11 @@ export default function Home() {
                 )}
                 <h3 className="post-title">{content.title}</h3>
                 {content.caption && (
-                  <p className="post-caption">{content.caption}</p>
+                  <p className="post-caption">
+                    {content.caption.length > 200
+                      ? `${content.caption.substring(0, 200)}...`
+                      : content.caption}
+                  </p>
                 )}
               </Link>
             ))}
@@ -97,8 +106,6 @@ export default function Home() {
 
       {/* Sidebar */}
       <div>
-
-
         <aside className="obituaries-section">
           <h2>Reasons for Death</h2>
           {posts.map((obituary) => (

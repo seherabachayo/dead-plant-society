@@ -124,7 +124,7 @@ export default function ExpandPost(){
     return(
         <div>
             <div className="page-elmnts">
-            <Post post={post}></Post>
+            <Post post={post} shorten={false} />
             <div className="commenter">
                 <p className='comment-header'>Comments?</p>
                 <form className='make-comment' onSubmit={handleSubmit}>
