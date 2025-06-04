@@ -117,6 +117,11 @@ export default function Post({post, shorten=true}){
                             <img src={image} alt={title} className="post-image" />
                         </div>
                     )}
+                     
+                     {displayBody && (
+                     <p className="post-caption">{displayBody}</p>
+                       )}
+
                      {shorten && body.length > 200 && (
                     <Link to={`/post/${post._id}`} className="read-more-link">
                      Read more
