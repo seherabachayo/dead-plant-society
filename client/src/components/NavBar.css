@@ -80,11 +80,9 @@
   color: #E8F7EE;
   font-weight: bold;
   font-size: 20px;
-  padding: 4px;
+  background: #990D35;
+  padding: 8px 16px;
   border-radius: 4px;
-  display: flex;
-  align-items: center;
-  background: transparent;
 }
 
 .nav-center {
