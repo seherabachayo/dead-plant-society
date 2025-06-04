@@ -94,6 +94,16 @@
     background-color: rgba(119, 178, 140, 0.1);
 }
 
+.user-column {
+    display: flex;
+    align-items: center;
+}
+
+.user-name {
+    font-weight: 500;
+    color: #14342B;
+}
+
 .new-entry-form {
     margin-bottom: 30px;
     padding: 20px;
@@ -139,6 +149,7 @@
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.2s;
+    margin-top: 5px;
 }
 
 .see-more-button:hover {

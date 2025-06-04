@@ -2,150 +2,207 @@
 .home-layout {
   display: grid;
   grid-template-columns: 1fr 300px;
-  gap: 24px;
+  gap: 2rem;
   max-width: 1200px;
-  margin: 80px auto 40px;
-  padding: 0 20px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-.home {
+.home-main {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 2rem;
 }
 
-/* Section headings */
-.home h2 {
-  margin: 0 0 12px;
-  font-size: 28px;
-  color: #333;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 8px;
-}
-
-/* Recent Tributes scroll area */
-.scroll-container {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding-bottom: 16px;
-  scrollbar-width: thin;
-}
-
-.scroll-container::-webkit-scrollbar {
-  height: 6px;
-}
-
-.scroll-container::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-}
-
-/* Common card style for each post */
-.post-card {
-  flex: 0 0 280px;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
+/* Recent Posts Section */
+.recent-posts {
+  background: #E8F7EE;
+  border: 1px solid #77B28C;
   border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  text-decoration: none;
+  padding: 1.5rem;
+}
+
+.recent-posts h2 {
+  color: #14342B;
+  margin-bottom: 1rem;
+}
+
+.recent-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.recent-post-card {
+  background: white;
+  border: 1px solid #77B28C;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
   color: inherit;
-}
-
-.post-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-}
-
-.post-card .post-title {
-  margin: 0 0 8px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #222;
-}
-
-.post-card .post-caption {
-  margin: 0;
-  font-size: 14px;
-  color: #555;
-  line-height: 1.4;
-  flex-grow: 1;
-}
-
-/* Vertical feed (all posts) uses same .post-card but full-width */
-.content-feed {
+  transition: transform 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  height: 100%;
+  min-height: 200px;
 }
 
-.content-feed .post-card {
-  flex: 1 0 auto;
-  max-width: 100%;
+.recent-post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(20, 52, 43, 0.1);
+}
+
+.recent-post-image {
+  width: 100%;
+  position: relative;
+  padding-top: 75%; /* 4:3 aspect ratio */
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.recent-post-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.recent-post-content {
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* For cards without images */
+.recent-post-card:not(:has(.recent-post-image img)) .recent-post-content {
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+.recent-post-content h3 {
+  color: #14342B;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.recent-post-content p {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* All Posts Feed */
+.all-posts {
+  background: #E8F7EE;
+  border: 1px solid #77B28C;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.all-posts h2 {
+  color: #14342B;
+  margin-bottom: 1rem;
+}
+
+.posts-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.post-wrapper {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.post-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(20, 52, 43, 0.1);
 }
 
 /* Sidebar */
-.leaderboard,
-.obituaries-section {
-  background: #fff;
+.home-sidebar {
+  position: sticky;
+  top: 2rem;
+  align-self: start;
+}
+
+.categories-section {
+  background: #E8F7EE;
+  border: 1px solid #77B28C;
   border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
 }
 
-.leaderboard h2,
-.obituaries-section h2 {
-  margin: 0 0 16px;
-  font-size: 22px;
-  color: #333;
+.categories-section h2 {
+  color: #14342B;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
 }
 
-/* Leaderboard list */
-.leaderboard-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 16px;
-  color: #444;
+.categories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.leaderboard-list li {
-  margin-bottom: 8px;
+.category-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 4px;
+  transition: background-color 0.2s;
 }
 
-/* Obituaries cards */
-.obituary-card {
-  padding: 12px 0;
-  border-bottom: 1px solid #eee;
+.category-item:hover {
+  background: #f5f5f5;
 }
 
-.obituary-card:last-child {
-  border-bottom: none;
+.category-name {
+  color: #14342B;
+  font-weight: 500;
+  width: 100%;
 }
 
-.obituary-card h3 {
-  margin: 0 0 4px;
-  font-size: 16px;
-  color: #333;
+/* Remove unused styles */
+.category-count {
+  display: none;
 }
 
-.obituary-card p {
-  margin: 0;
-  font-size: 14px;
-  color: #666;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Responsive Design */
+@media (max-width: 1024px) {
   .home-layout {
     grid-template-columns: 1fr;
   }
+  
+  .home-sidebar {
+    position: static;
+  }
+}
 
-  .leaderboard,
-  .obituaries-section {
-    margin-top: 32px;
+@media (max-width: 768px) {
+  .recent-posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .recent-posts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .home-layout {
+    padding: 1rem;
   }
 }

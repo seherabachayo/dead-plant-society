@@ -1,7 +1,8 @@
 .da-pfp-info{
     display: flex;
     align-items: flex-start;
-    gap: 0px;
+    gap: 30px;
+    margin-bottom: 40px;
 }
 .da-user-pfp{
     border-radius: 50%;
@@ -9,19 +10,17 @@
     height: 166px;
     display: block;
     cursor: pointer; 
-    margin: 0px 0% 24px 0%; 
-    top: -80px;
+    margin: 20px 0;
 }
 
 .da-user-name{
     font-weight: 500; 
     font-size: 70px; 
-    margin: 0px 0px 0px 0px;
-    transform: translateX(-6px);      
+    margin: 0;
 }
 
 .da-user-bio{
-    margin: 0px 5px 0px 0px; 
+    margin: 10px 0; 
 }
 
 .da-user-stats{
@@ -35,8 +34,7 @@
 }
 
 .da-user-info{
-    margin: 0px 0px 70px 50px; 
-    margin-top: -15px; 
+    margin: 20px 0;
     align-items: flex-start;
     display: flex;  
     flex-direction: column; 
@@ -44,9 +42,8 @@
 
 .category-buttons{
     display: flex; 
-    width: 500px; 
-    justify-content: space-between;
-    
+    width: 200px;
+    margin-bottom: 30px;
 }
 
 .stat-button:hover{
@@ -54,48 +51,70 @@
 }
 
 .editBtn{
-    margin-top: 21px; 
-    margin-left: 50px; 
+    margin-left: 20px;
     background: #77B28C;
     border-radius: 4px;
     font-weight: 500;
     transition: background-color 0.2s;
-    height: 60px; 
-
+    height: 40px;
+    padding: 0 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
 }
 
 .editBtn:hover{
     background: #990D35;
-
 }
 
 .name-plus-edit{
     display:flex; 
     flex-direction: row;
-    justify-content: center;
     align-items: center;
 }
 .stat-button{
     background: #77B28C;
-   
+    border: none;
     border-radius: 4px;
     font-weight: 500;
     transition: background-color 0.2s;
-    margin-bottom: 30px;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
 }
 
 .stat-button:hover{
     background: #990D35;
-
 }
-.overview-display button {
-  margin-top: 50px;
-  background-color: #186a2b;    
-  color: #fff;                  
-  padding: 8px 16px;            
-  border: none;                 
-  border-radius: 4px;           
-  font-size: 16px;              
-  cursor: pointer;              
-  transition: background-color 0.2s ease;
+
+.posts-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.post-card {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.post-title {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.post-caption {
+    color: #666;
+    margin: 5px 0;
 }

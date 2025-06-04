@@ -219,7 +219,6 @@ export default function LogForm() {
                         <th>Body</th>
                         <th>Date</th>
                         <th>User</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -230,14 +229,10 @@ export default function LogForm() {
                             <td>{entry.symptoms}</td>
                             <td>{entry.body}</td>
                             <td>{new Date(entry.date).toLocaleDateString()}</td>
-                            <td>{entry.username}</td>
                             <td>
-                                <button 
-                                    className="see-more-button"
-                                    onClick={() => handleSeeMore(entry.user)}
-                                >
-                                    See more from this user
-                                </button>
+                                <div className="user-column">
+                                    <span className="user-name">{entry.username}</span>
+                                </div>
                             </td>
                         </tr>
                     ))}
