@@ -4,7 +4,7 @@ import './ExpandedPost.css';
 //import pic from "/Users/kaibacker/Downloads/4CA0ABB7-D410-4993-BF59-DCE2187E739E.jpg"
 //import post_pic from "/Users/kaibacker/Downloads/IMG_0440.jpg"
 import Post from '../components/Post.jsx'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {useState, useEffect} from 'react'; 
 import {Text, StyleSheet, TextInput, Modal, View, Button} from 'react-native-web';
 
@@ -17,6 +17,7 @@ export default function ExpandPost(){
     const [linkedPostId, setLinkedPostId] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true); 
+    const navigate = useNavigate(); 
     let {id} = useParams(); 
     
     useEffect(() => {
@@ -73,6 +74,7 @@ export default function ExpandPost(){
             const user = JSON.parse(localStorage.getItem("user"));  
             if(!user){
                 alert("Please log in to comment.");
+                navigate("/login"); 
             return; 
             }        
         // console.log(email);
