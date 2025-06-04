@@ -45,8 +45,21 @@ export default function NavBar() {
         .finally(() => {
          // setLoading(false);
         })};
+
+        const updateUser = () => {
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+              setPoster(JSON.parse(storedUser));
+            }
+          };
+        
+          updateUser(); // initial load
+        
+          // Listen for custom event
+          window.addEventListener('user-updated', updateUser);
  return () => {
      window.removeEventListener("storage", updateLoggedInStatus);
+     window.removeEventListener('user-updated', updateUser);
  };
 }, []);
 
@@ -71,7 +84,7 @@ export default function NavBar() {
                     PLANT DIARIES
                 </Link>
             <li className="dropdown">
-                <Link to="/my-profile" className="dropbtn"><img className='da-pfp' src={JSON.parse(localStorage.getItem("user"))?.avatar} alt="https://bruinwalk-assets.sfo3.cdn.digitaloceanspaces.com/media/images/professors/Paul_R_Eggert_Yi5vPr5.jpg"></img>
+                <Link to="/my-profile" className="dropbtn"><img className='da-pfp' src={poster.avatar} alt="https://bruinwalk-assets.sfo3.cdn.digitaloceanspaces.com/media/images/professors/Paul_R_Eggert_Yi5vPr5.jpg"></img>
                 </Link>
                     <ul className='dropdown-content'>
                     <div className='da-box'>

@@ -141,6 +141,8 @@ export default function EditProfile() {
                 const updatedUser = result.data;
                 setUser(updatedUser);
                 localStorage.setItem('user', JSON.stringify(updatedUser));
+                window.dispatchEvent(new Event('user-updated')); // 👈 Force update
+
                 setShow(false); // Close modal after successful update
                 setError(''); // Clear any errors
             } else {
