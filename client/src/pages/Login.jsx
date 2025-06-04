@@ -61,6 +61,8 @@ const Login = () => {
 
         <div className="google-login">
         <GoogleLogin
+        shape = "circle"
+        data-text = "continue_width"
         onSuccess={async (credentialResponse) => {
         try{
           const response = await fetch("http://localhost:5050/api/users/google-login", {
@@ -88,13 +90,13 @@ const Login = () => {
         auto_select={true}
        />
        </div>
-      
-      <div className="divider"><span>OR</span></div>
+       <br/><br/>
 
+      <div className="divider"><span>--------------------- OR ---------------------</span></div>
+      <br/><br/>
       {/* non Google login  */}
       <div className="reg-login">
-        <label htmlFor="email">Email</label>
-        <input
+          <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
@@ -104,7 +106,7 @@ const Login = () => {
         />
         <br /><br />
 
-        <label htmlFor="password">Password</label>
+        
         <input
           value={pass}
           onChange={(e) => setPassword(e.target.value)}

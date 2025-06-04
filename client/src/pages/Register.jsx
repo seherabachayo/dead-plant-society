@@ -56,32 +56,32 @@ const Register = () => {
     <div className="auth-form-container">
       <div className="login-form">
      <h1>Create Your Account </h1>
-    <label htmlFor="username">Full Name</label>
-    <br />
+     <br/><br/>
+   
     
     <input
           id="username"
           name="username"
-          placeholder="testperson"
+          placeholder="Full Name*"
           value={username}
           onChange={e => setName(e.target.value)}
         />
     <br/><br/>
-    <label htmlFor="email">Email</label><br/>
+   
         <input
           id="email"
           name="email"
           type="email"
-          placeholder="johndoe@gmail.com"
+          placeholder="Email*"
           value={email}
           onChange={e => setEmail(e.target.value)}
         /><br/><br/>
-    <label htmlFor="password">Password</label><br/>
+    
         <input
           id="password"
           name="password"
           type="password"
-          placeholder="password"
+          placeholder="Password*"
           value={password}
           onChange={e => setPassword(e.target.value)}
         /><br/><br/>
