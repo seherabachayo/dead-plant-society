@@ -9,10 +9,10 @@ import { OAuth2Client } from "google-auth-library" //add google auth
 const listofAvatars = [
  "https://c02.purpledshub.com/uploads/sites/40/2023/06/julyflowerhero.jpg?w=1029&webp=1",
  "https://hips.hearstapps.com/hmg-prod/images/high-angle-view-of-variety-of-succulent-plants-royalty-free-image-1584462052.jpg",
- "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Fr%C3%BChling_bl%C3%BChender_Kirschenbaum.jpg/1200px-Fr%C3%BChling_bl%C3%BChender_Kirschenbaum.jpg",
+ 
  "https://hips.hearstapps.com/hmg-prod/images/beautiful-pink-flowers-of-astrantia-major-a-summer-royalty-free-image-1709585164.jpg", 
  "https://cdn.mos.cms.futurecdn.net/v2/t:0,l:0,cw:2000,ch:1125,q:80,w:2000/gFiEjR6MkaYHmkfgGanByD.png",
- "https://cdn.britannica.com/50/157550-050-56DA0685/Venus-flytrap-traps-insects.jpg"
+ 
 
 
 ]
