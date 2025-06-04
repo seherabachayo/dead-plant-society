@@ -4,43 +4,46 @@ import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode"; 
 import './Login.css'; 
 
-
-import axios from "axios"; 
-
 const Login = () => {
   const [email, setEmail] = useState('');
   const [pass, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", pass);
     
-    try{
+    // Basic validation
+    if (!email || !pass) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    setLoading(true);
+    
+    try {
       const response = await fetch("http://localhost:5050/api/users/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({email, password:pass}), 
-    }); 
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email, password:pass}), 
+      }); 
     
-    const data = await response.json(); 
-    console.log("Login:", data);
+      const data = await response.json(); 
 
-    if(response.ok && data.success){
-      localStorage.setItem("user", JSON.stringify(data.data))
-      window.dispatchEvent(new Event("storage"));
-      navigate("/");
+      if(response.ok && data.success){
+        localStorage.setItem("user", JSON.stringify(data.data))
+        window.dispatchEvent(new Event("storage"));
+        navigate("/");
+      } else {
+        alert(data.message || "Login failed. Please try again.");
+      }
+    } catch(err) {
+      alert("An error occurred during login. Please try again later.");
+    } finally {
+      setLoading(false);
     }
-    else{
-      alert(data.message || "Login failed");
-    }
-  }
-  catch(err){
-    console.error("Login failure:", err); 
-  }
-
-
   };
 
   const handleLogout = () => {
@@ -60,28 +63,28 @@ const Login = () => {
         <GoogleLogin
         onSuccess={async (credentialResponse) => {
         try{
-          console.log("Google Credential:", credentialResponse);
-          const decoded = jwtDecode(credentialResponse.credential);
-          console.log(decoded);
           const response = await fetch("http://localhost:5050/api/users/google-login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ token: credentialResponse.credential }),
           });
           const data = await response.json();
-          console.log("Backend response:", data);
-         
-         console.log("Sending to Backend:", response.data); 
-         localStorage.setItem("user", JSON.stringify(data.data));
-         window.dispatchEvent(new Event("storage")); 
           
-         navigate("/");
+          if (response.ok && data.success) {
+            localStorage.setItem("user", JSON.stringify(data.data));
+            window.dispatchEvent(new Event("storage")); 
+            navigate("/");
+          } else {
+            alert(data.message || "Google login failed");
+          }
         }
          catch(err){
-           console.error("Google login failed", err); 
+           alert("Failed to authenticate with Google. Please try again."); 
          }
         }}
-        onError={() => console.log("Login failed")}
+        onError={() => {
+          alert("Google login failed. Please try again or use email login.");
+        }}
         auto_select={true}
        />
        </div>
@@ -90,37 +93,38 @@ const Login = () => {
 
       {/* non Google login  */}
       <div className="reg-login">
-        <label htmlFor ="email">Email</label>
-     
+        <label htmlFor="email">Email</label>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
           placeholder="Email *"
           id="login-email"
+          disabled={loading}
         />
         <br /><br />
 
         <label htmlFor="password">Password</label>
-     
         <input
           value={pass}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="Password *"
           id="login-password"
+          disabled={loading}
         />
         <br /><br />
         </div>
-        <button type="submit">Log In</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Log In'}
+        </button>
         </form>
         <p>
           Don't have an account? <Link to="/register">Register here</Link>
         </p>
      </div>
      </div>
-
-      );
-   
+  );
 };
+
 export default Login;

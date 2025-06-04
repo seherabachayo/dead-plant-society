@@ -8,7 +8,7 @@ export default function EditProfile() {
     const [bio, setBio] = useState(''); 
     const [show, setShow] = useState(false); 
     const [user, setUser] = useState(null);
-    const [showSubmit, setShowSubmit] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const savedUser = localStorage.getItem('user');
@@ -21,15 +21,45 @@ export default function EditProfile() {
         return <div className="loading-placeholder">Loading profile...</div>;
     }
 
-    const handleName = (e) => {
+    const handleName = async (e) => {
         e.preventDefault(); 
-        console.log('Username has been changed to: ', name); 
-    }; 
+        setError(''); // Clear any previous errors
+        
+        if (name.trim()) {
+            try {
+                console.log('Making request to:', `/api/users/${user._id}`);
+                const response = await fetch(`/api/users/${user._id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: name.trim(),
+                        email: user.email,
+                        provider: user.provider
+                    })
+                });
 
-    const handleBio = (e) => {
-        e.preventDefault(); 
-        console.log('Bio has been changed to: ', bio); 
-    }
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    const updatedUser = result.data;
+                    setUser(updatedUser);
+                    localStorage.setItem('user', JSON.stringify(updatedUser));
+                    console.log('Username successfully updated to:', updatedUser.username);
+                    setName(''); // Clear the input after successful update
+                } else {
+                    setError(result.message || 'Failed to update username');
+                    console.error('Failed to update username:', result.message);
+                }
+            } catch (error) {
+                setError('Error connecting to server');
+                console.error('Error updating username:', error);
+            }
+        } else {
+            setError('Please enter a valid username');
+        }
+    }; 
 
     const styles = StyleSheet.create({
         input:{
@@ -57,6 +87,7 @@ export default function EditProfile() {
                 </View>
             </Modal>
             <h2 className="edit-header">Edit profile</h2>
+            {error && <div className="error-message" style={{color: 'red', marginBottom: '10px'}}>{error}</div>}
             <div className='squabble-div'>
                 <div className='change-photo'>
                     <div className='pfp-plus-name'>
@@ -68,15 +99,19 @@ export default function EditProfile() {
             </div>
             <h3 className='edit-name'>Edit name</h3>
             <div className='changing-name'>
-            <form className="name-editor" onSubmit={handleName}>
-                <TextInput style={styles.input} editable multiline maxLength={150} placeholder="Change your name" value={name} onChange={(e) => setName(e.target.value)}/>
-            </form>
+                <form className="name-editor" onSubmit={handleName}>
+                    <TextInput 
+                        style={styles.input} 
+                        editable 
+                        multiline 
+                        maxLength={150} 
+                        placeholder={user.username} 
+                        value={name} 
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    <button type="submit" className='submit-btn'>Update Name</button>
+                </form>
             </div>
-            <h3 className='edit-bio'>Edit bio</h3>
-            <form className='bio-editor' onSubmit={handleBio}>
-                <TextInput style={styles.input} editable multiline maxLength={150} placeholder='Change your bio' value={bio} onChange={(e) => setBio(e.target.value)}/>
-            </form>
-            <button type="button" className='submit-btn' onClick={() => setShowSubmit(true)}>Submit changes</button>
         </div>
     )
 }
