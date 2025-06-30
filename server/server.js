@@ -1,8 +1,10 @@
 import express from 'express';
 import dotenv from "dotenv";
+import { fileURLToPath } from 'url';
 import { connectDB } from "./config/db.js";
-import cors from 'cors';
+import path from 'path';
 
+import cors from 'cors';
 import userRoutes from "./routes/user.route.js";
 import commentRoutes from "./routes/comment.route.js";
 import postRoutes from "./routes/post.route.js";
@@ -10,7 +12,12 @@ import logRoutes from './routes/log.route.js';
 
 
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load `.env` from the root directory
+dotenv.config({ path: path.resolve(process.cwd(), '.env') });
+
 
 
 const app = express();
