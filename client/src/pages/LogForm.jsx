@@ -25,7 +25,7 @@ export default function LogForm() {
 
     const fetchLogs = async () => {
         try {
-            const response = await axios.get('http://localhost:5050/api/logs');
+            const response = await axios.get('/api/logs');
             setEntries(response.data.data);
         } catch (error) {
             console.error('Error fetching logs:', error);
@@ -62,7 +62,7 @@ export default function LogForm() {
         }
 
         try {
-            const response = await axios.post('http://localhost:5050/api/logs', {
+            const response = await axios.post('/api/logs', {
                 ...form,
                 userId: user._id,
                 username: user.username

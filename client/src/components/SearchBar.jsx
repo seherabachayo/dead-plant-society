@@ -17,7 +17,7 @@ export default function SearchBar() {
     try {
      
       const response = await fetch(
-        `http://localhost:5050/api/post/search?search=${encodeURIComponent(
+        `/api/post/search?search=${encodeURIComponent(
           searchTerm
         )}`
       );

@@ -23,7 +23,7 @@ export default function MyProfile() {
       setLoadingPosts(true);
       setPostsError(null);
 
-      fetch(`http://localhost:5050/api/post/myPosts/${user._id}`)
+      fetch(`/api/post/myPosts/${user._id}`)
         .then((res) => {
           if (!res.ok) throw new Error(`Server responded with ${res.status}`);
           return res.json();

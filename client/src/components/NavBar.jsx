@@ -25,7 +25,7 @@ export default function NavBar() {
  const user = JSON.parse(localStorage.getItem("user")); 
     if(user){    
         fetch(
-              `http://localhost:5050/api/users/${user._id}` //fetches poster with same id as in url
+              `/api/users/${user._id}` //fetches poster with same id as in url
           ).then(res => {
               if(!res.ok) throw new Error(res.statusText);
               return res.json(); 

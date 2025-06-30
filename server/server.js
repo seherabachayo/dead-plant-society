@@ -36,8 +36,7 @@ app.use('/api/logs', logRoutes);
 
 
  //start server
-
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
 	connectDB();
 	console.log("Server started at http://localhost:" + PORT);
 });

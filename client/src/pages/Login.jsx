@@ -22,7 +22,7 @@ const Login = () => {
     setLoading(true);
     
     try {
-      const response = await fetch("http://localhost:5050/api/users/login", {
+      const response = await fetch("/api/users/login", {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const Login = () => {
         data-text = "continue_width"
         onSuccess={async (credentialResponse) => {
         try{
-          const response = await fetch("http://localhost:5050/api/users/google-login", {
+          const response = await fetch("/api/users/google-login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ token: credentialResponse.credential }),
