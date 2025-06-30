@@ -7,7 +7,11 @@ const router = express.Router();
 
 
 
-router.post('/login', login); 
+router.post('/login', login);
+
+//to handle login through google
+router.post("/google-login", googleLogin); 
+
 
 //get all users
 // the / is prefixed by /api/users in user.route.js file
@@ -17,7 +21,9 @@ router.get("/", getUsers);//call get function in user.controller.js
  router.post("/", createUser);
 
 
-
+//update user information
+//use patch if updating some object info and put to update all of it
+router.put("/:id", updateUser);
 
  //to delete users in database
  router.delete("/:id", deleteUser);
@@ -25,12 +31,10 @@ router.get("/", getUsers);//call get function in user.controller.js
  //search for user, return user
 router.get('/:id', searchUsers);
 
-//update user information
-//use patch if updating some object info and put to update all of it
-router.put("/:id", updateUser);
 
 
-//to handle login through google
-router.post("/google-login", googleLogin); 
+
+
+
 
 export default router;
