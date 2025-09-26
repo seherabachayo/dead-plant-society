@@ -8,7 +8,7 @@ This community-driven platform gives users a space to share and reflect on the l
 ## Features
 
  ### 1. Post and Comment
-In a manner similar to an online plant forum, users can upload pictures and write detailed captions in a post to share stories of their beloved ( or currently deceased) plants. Other users can react and leave comments, fostering connection, humor, and support. 
+In a manner similar to an online plant forum, users can upload pictures and write detailed captions in a post to share stories of their beloved (or currently deceased) plants. Other users can react and leave comments, fostering connection, humor, and support. 
 ### 2. Log Plant Info on Plant Diaries 
 To keep track of their plants and monitor their well-being (or slow, inevitable decline), users can log updates in plant diaries. These entries are visible to others and can be filtered by plant type, category, or symptom—making it easy to spot patterns, empathize with fellow plant owners, or just admire the effort.
 ### 3. Customizable profiles for each user 
