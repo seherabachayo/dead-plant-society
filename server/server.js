@@ -33,9 +33,10 @@ app.get('/healthz', (_req, res) => res.status(200).send('ok'));
 if (process.env.NODE_ENV === 'production') {
   const clientDist = path.join(__dirname, '..', 'client', 'dist');
   app.use(express.static(clientDist));
-  // SPA fallback for non-API routes
-  app.get('*', (req, res) => {
-    if (req.path.startsWith('/api/')) return res.sendStatus(404);
+
+  // SPA fallback for non-API routes (no wildcard pattern)
+  app.use((req, res, next) => {
+    if (req.path.startsWith('/api/')) return next();
     res.sendFile(path.join(clientDist, 'index.html'));
   });
 }
