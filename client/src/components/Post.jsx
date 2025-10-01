@@ -18,7 +18,7 @@ export default function Post({post, shorten=true}){
         const userId = post.user || post.poster; // Check for both user and poster fields
         if (userId) {
             const actualUserId = typeof userId === 'string' ? userId : userId._id;
-            fetch(`http://localhost:5050/api/users/${actualUserId}`)
+            fetch(`/api/users/${actualUserId}`)
                 .then(res => {
                     if(!res.ok) throw new Error(res.statusText);
                     return res.json(); 
@@ -40,7 +40,7 @@ export default function Post({post, shorten=true}){
 
         // Fetch comment count
         if (post._id) {
-            fetch(`http://localhost:5050/api/comments/linked/${post._id}`)
+            fetch(`/api/comments/linked/${post._id}`)
                 .then(res => {
                     if(!res.ok) throw new Error(res.statusText);
                     return res.json(); 

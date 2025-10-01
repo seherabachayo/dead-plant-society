@@ -11,7 +11,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5050/api/post')
+    fetch('/api/post')
       .then((res) => {
         if (!res.ok) throw new Error(res.statusText);
         return res.json();

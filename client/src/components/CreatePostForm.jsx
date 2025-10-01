@@ -112,7 +112,7 @@ export default function CreatePostForm() {
     };
 
     try {
-      const res = await fetch('http://localhost:5050/api/post', {
+      const res = await fetch('/api/post', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

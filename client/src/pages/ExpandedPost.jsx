@@ -22,7 +22,7 @@ export default function ExpandPost(){
     
     useEffect(() => {
         fetch(
-            `http://localhost:5050/api/post/${id}` //fetches post with same id as in url
+            `/api/post/${id}` //fetches post with same id as in url
         ).then(res => {
             if(!res.ok) throw new Error(res.statusText);
             return res.json(); 
@@ -46,7 +46,7 @@ export default function ExpandPost(){
 
       //fetching comments 
       fetch(
-            `http://localhost:5050/api/comments/linked/${id}`
+            `/api/comments/linked/${id}`
         ).then(res => {
             if(!res.ok) throw new Error(res.statusText);
             return res.json(); 
@@ -79,7 +79,7 @@ export default function ExpandPost(){
             }        
         // console.log(email);
                 try {
-        const response = await fetch('http://localhost:5050/api/comments', {
+        const response = await fetch('/api/comments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -95,7 +95,7 @@ export default function ExpandPost(){
         const data = await response.json();
         console.log('Comment created:', data);
 
-        const updatedRes = await fetch(`http://localhost:5050/api/comments/linked/${id}`);
+        const updatedRes = await fetch(`/api/comments/linked/${id}`);
         const updatedComments = await updatedRes.json();
         setComments(updatedComments.data);
 

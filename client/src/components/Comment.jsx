@@ -20,7 +20,7 @@ const Comment = ({ values }) => {
       return; 
     }
           fetch(
-              `http://localhost:5050/api/users/${userId}` //fetches poster with same id as in url
+              `/api/users/${userId}` //fetches poster with same id as in url
           ).then(res => {
               if(!res.ok) throw new Error(res.statusText);
               return res.json(); 
