@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 import userRoutes from "./routes/user.route.js";
 import commentRoutes from "./routes/comment.route.js";
@@ -10,13 +12,16 @@ import logRoutes from './routes/log.route.js';
 
 
 
+
 dotenv.config();
 
 
 const app = express();
 const PORT = process.env.PORT || 5050;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-  app.use(cors()); 
+app.use(cors()); 
 
 // Increase payload limit to 10MB
 app.use(express.json({ limit: '10mb' }));
@@ -26,6 +31,17 @@ app.use("/api/users", userRoutes);//calls methods in user.route.js
 app.use("/api/comments", commentRoutes);
 app.use("/api/post", postRoutes);
 app.use('/api/logs', logRoutes);
+
+//for Render deployment 
+if (process.env.NODE_ENV === 'production') {
+ const clientDist = path.join(__dirname, '..', 'client', 'dist');
+ app.use(express.static(clientDist));
+ // SPA fallback: send index.html for all non-API routes
+  app.get('*', (req, res) => {
+   // let API routes 404 normally
+    if (req.path.startsWith('/api/')) return res.sendStatus(404);
+    res.sendFile(path.join(clientDist, 'index.html'));
+  });
 
 
  //start server
